@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <title>Register</title>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select').material_select();
+        })
+    </script>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Find My Team</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper">
+                <li><a href="badges.html">Create game</a></li>
+                <li><a href="sass.html">Search game</a></li>
+                <li><a href="#!"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate">
+                        <label for="email">E-mail</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="confirm" type="password" class="validate">
+                        <label for="confirm">Confirm</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s3">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">Men</option>
+                                    <option value="2">Women</option>
+                                </select>
+                                <label>Sex</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" disabled selected>Choose your option</option>
+                                    <option value="1">2014</option>
+                                    <option value="2">2015</option>
+                                    <option value="3">2016</option>
+                                </select>
+                                <label>Birthyear</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s9">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="description" class="materialize-textarea"></textarea>
+                                <label for="description">Description</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s2">
+                        <input type="checkbox" id="test1" />
+                        <label for="test1">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="test2" />
+                        <label for="test2">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="test3" />
+                        <label for="test3">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="test5" />
+                        <label for="test5">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="test6" />
+                        <label for="test6">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="test7" />
+                        <label for="test7">Red</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s2">
+                        <input type="checkbox" id="cb7" />
+                        <label for="cb7">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="cb8" />
+                        <label for="cb8">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="cb9" />
+                        <label for="cb9">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="cb10" />
+                        <label for="cb10">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="cb11" />
+                        <label for="cb11">Red</label>
+                    </div>
+                    <div class="col s2">
+                        <input type="checkbox" id="cb12" />
+                        <label for="cb12">Red</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Register
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

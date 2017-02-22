@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 //GET
 app.get('/', function (req, res) {
@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/login', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/LogIn.html'))
+    res.sendFile(path.join(__dirname+'/views/login.html'))
 })
 
 app.get('/register', function (req, res) {
@@ -27,8 +27,16 @@ app.get('/game/:id', function (req, res) {
     res.sendFile(path.join(__dirname+'/views/game.html'))
 })
 
-app.get('/game', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/games.html'))
+app.get('/search/', function (req, res) {
+    res.sendFile(path.join(__dirname+'/views/search.html'))
+})
+
+app.get('/user/', function (req, res) {
+    res.sendFile(path.join(__dirname+'/views/user.html'))
+})
+
+app.get('/user/:name', function (req, res) {
+    res.sendFile(path.join(__dirname+'/views/user.html'))
 })
 
 //POST
@@ -41,6 +49,14 @@ app.post('/register', function (req, res) {
 })
 
 app.post('/game', function (req, res) {
+
+})
+
+app.post('/user', function (req, res) {
+
+})
+
+app.post('/gamerequest', function (req, res) {
 
 })
 
