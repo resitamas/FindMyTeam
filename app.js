@@ -1,67 +1,12 @@
-var express = require('express')
-var app = express()
-var path = require("path");
-var bodyParser = require('body-parser')
-
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+var express = require('express');
+var app = express();
 
 app.use(express.static('public'));
 
-//GET
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/index.html'))
-})
+var server = app.listen(3020, function () {
 
-app.get('/login', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/login.html'))
-})
+    console.log("App started")
 
-app.get('/register', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/register.html'))
-})
-
-app.get('/game/:id', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/game.html'))
-})
-
-app.get('/search/', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/search.html'))
-})
-
-app.get('/user/', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/user.html'))
-})
-
-app.get('/user/:name', function (req, res) {
-    res.sendFile(path.join(__dirname+'/views/user.html'))
-})
-
-//POST
-app.post('/login', function (req, res) {
-
-})
-
-app.post('/register', function (req, res) {
-
-})
-
-app.post('/game', function (req, res) {
-
-})
-
-app.post('/user', function (req, res) {
-
-})
-
-app.post('/gamerequest', function (req, res) {
-
-})
-
-app.listen(3010, function () {
-    console.log('Example app listening on port 3000!')
-})
+});
 
 module.exports = app;
