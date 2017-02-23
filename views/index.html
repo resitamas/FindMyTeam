@@ -5,7 +5,18 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/css/style.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.datepicker').pickadate({
+                selectMonths: true,
+                selectYears: 15
+            });
+        })
+    </script>
     <title>Index</title>
 </head>
 <body>
@@ -19,5 +30,198 @@
             </ul>
         </div>
     </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s2 offset-s8">
+                <label for="fromDate">From</label>
+                <input id="fromDate" type="date" class="datepicker" name="datepick"/>
+            </div>
+            <div class="col s2">
+                <label for="toDate">To</label>
+                <input  id="toDate" type="date" class="datepicker" name="datepick">
+            </div>
+        </div>
+        <label style="font-size: 20px">Games participated (4)</label>
+        <ul class="cards">
+            <li>
+                <div class="card-panel teal small white-text hoverable" style="width: 300px">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-field="id">Date</th>
+                                <th data-field="name">Time</th>
+                                <th data-field="price">Players</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2017.03.04.</td>
+                                <td>17:00</td>
+                                <td>10/2</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <div class="card-panel teal small white-text" style="width: 300px">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <div class="card-panel teal small white-text" style="width: 300px">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+            <li>
+                <div class="card-panel teal small white-text" style="width: 300px">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </li>
+        </ul>
+        <label style="font-size: 20px">Games invited (1)</label>
+        <div class="row">
+            <div class="col s4 ">
+                <div class="card-panel teal small white-text">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <label style="font-size: 20px">Games requested (1)</label>
+        <div class="row">
+            <div class="col s4 ">
+                <div class="card-panel teal small white-text">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <label style="font-size: 20px">Games organized (1)</label>
+        <div class="row">
+            <div class="col s4 ">
+                <div class="card-panel teal small white-text">
+                    <span>Sport</span>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="id">Date</th>
+                            <th data-field="name">Time</th>
+                            <th data-field="price">Players</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>2017.03.04.</td>
+                            <td>17:00</td>
+                            <td>10/2</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
