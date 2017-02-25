@@ -14,3 +14,7 @@ ul.cards li {
 .card-panel {
     cursor: pointer;
 }
+
+.container {
+    margin-top: 20px;
+}
