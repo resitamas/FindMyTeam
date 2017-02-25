@@ -10,6 +10,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <title>Edit profile</title>
+    <script type="text/javascript">
+        $(function(){
+            $('select').material_select();
+        })
+    </script>
 </head>
 <body>
     <nav>
@@ -23,6 +28,93 @@
         </div>
     </nav>
 
+    <div class="container">
+
+        <form>
+            <div class="row">
+                <div class="col s3 center">
+                    <img src="https://avatars.githubusercontent.com/u/17765383" alt="" class="circle center">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Upload</button>
+                </div>
+                <div class="col s2">
+                    <div class="input-field">
+                        <select>
+                            <option value="" disabled selected>Choose sex</option>
+                            <option value="1">Proffesional</option>
+                            <option value="2">Beginner</option>
+                        </select>
+                        <label>Level</label>
+                    </div>
+                    <div class="input-field">
+                        <select>
+                            <option value="" disabled selected>Choose year</option>
+                            <option value="1">2012</option>
+                            <option value="2">2013</option>
+                        </select>
+                        <label>Birth year</label>
+                    </div>
+                </div>
+                <div class="col s7 input-field">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s2">
+                    <input type="checkbox" id="test1" />
+                    <label for="test1">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="test2" />
+                    <label for="test2">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="test3" />
+                    <label for="test3">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="test5" />
+                    <label for="test5">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="test6" />
+                    <label for="test6">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="test7" />
+                    <label for="test7">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb7" />
+                    <label for="cb7">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb8" />
+                    <label for="cb8">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb9" />
+                    <label for="cb9">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb10" />
+                    <label for="cb10">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb11" />
+                    <label for="cb11">Red</label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" id="cb12" />
+                    <label for="cb12">Red</label>
+                </div>
+            </div>
+            <button class="btn-large waves-effect waves-light right" type="submit" name="action">Save
+                <i class="material-icons right">save</i>
+            </button>
+        </form>
+
+    </div>
 
 
 </body>
