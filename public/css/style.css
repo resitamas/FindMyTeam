@@ -9,5 +9,8 @@ ul.cards li {
     display: inline-block;
     width: 300px;
     height: 250px;
+}
+
+.card-panel {
     cursor: pointer;
 }
