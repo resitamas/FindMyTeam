@@ -10,6 +10,8 @@
     overflow-x: hidden;
 }
 
-.collection-item {
-    cursor: pointer;
+
+
+.collection-item.hoverable:hover {
+    background-color: #dddddd;
 }
