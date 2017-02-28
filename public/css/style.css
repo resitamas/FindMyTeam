@@ -9,3 +9,7 @@
 .tabs {
     overflow-x: hidden;
 }
+
+.collection-item {
+    cursor: pointer;
+}
