@@ -1,20 +1,11 @@
-ul.cards {
-    margin: 0;
-    padding: 0;
-    white-space: nowrap;
-    width: 100%;
-    overflow-x: auto;
-}
-ul.cards li {
-    display: inline-block;
-    width: 300px;
-    height: 250px;
-}
-
 .card-panel {
     cursor: pointer;
 }
 
 .container {
     margin-top: 20px;
+}
+
+.tabs {
+    overflow-x: hidden;
 }
