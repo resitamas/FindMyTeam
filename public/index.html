@@ -20,13 +20,21 @@
     <title>Index</title>
 </head>
 <body>
+
+    <!-- Dropdown Structure -->
+    <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="profile.html">Profile</a></li>
+        <li class="divider"></li>
+        <li><a href="login.html">Log out</a></li>
+    </ul>
+
     <nav>
         <div class="nav-wrapper">
             <a href="index.html" class="brand-logo" style="margin-left: 100px">Find My Team</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper" style="margin-right: 100px">
                 <li><a href="create.html">Create game</a></li>
                 <li><a href="games.html">Search game</a></li>
-                <li><a href="profile.html"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
+                <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
             </ul>
         </div>
     </nav>
@@ -46,9 +54,9 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs tabs-fixed-width">
-                    <li class="tab col s3"><a href="#games1">Games participated (4)</a></li>
-                    <li class="tab col s3"><a class="active" href="#games2">Games invited (1)</a></li>
-                    <li class="tab col s3"><a href="#games3">Games requested (1)</a></li>
+                    <li class="tab col s3"><a class="active" href="#games1">Games participated (4)</a></li>
+                    <li class="tab col s3"><a href="#games2">Games invited (1)</a></li>
+                    <li class="tab col s3 disabled"><a href="#games3">Games requested (0)</a></li>
                     <li class="tab col s3"><a href="#games4">Games organized (1)</a></li>
                 </ul>
             </div>
@@ -291,5 +299,8 @@
 
 
     </div>
+
+
+
 </body>
 </html>
