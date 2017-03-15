@@ -5,12 +5,12 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.clockpicker.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/materialize.clockpicker.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
     <script type="text/javascript">
         $(function() {
             $('.datepicker').pickadate({
@@ -39,17 +39,17 @@
 
     <!-- Dropdown Structure -->
     <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="/users/1">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="login.html">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
     </ul>
 
     <nav>
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo" style="margin-left: 100px">Find My Team</a>
+            <a href="/" class="brand-logo" style="margin-left: 100px">Find My Team</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper" style="margin-right: 100px">
-                <li><a href="create.html">Create game</a></li>
-                <li><a href="games.html">Search game</a></li>
+                <li><a href="/new/games">Create game</a></li>
+                <li><a href="/games">Search game</a></li>
                 <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
             </ul>
         </div>
@@ -57,29 +57,28 @@
 
 
     <div class="container">
-        <form>
+        <form action="/games" method="get">
             <div class="row">
-
                 <div class="input-field col s3">
                     <label for="fromDate">From Date</label>
-                    <input id="fromDate" type="date" class="datepicker" name="datepick"/>
+                    <input id="fromDate" type="date" class="datepicker" name="fromdate"/>
                 </div>
                 <div class="input-field col s3">
                     <label for="toDate">To Date</label>
-                    <input  id="toDate" type="date" class="datepicker" name="datepick">
+                    <input  id="toDate" type="date" class="datepicker" name="todate">
                 </div>
                 <div class="input-field col s3">
                     <label for="fromTimepicker">From Time</label>
-                    <input id="fromTimepicker" class="timepicker" type="time">
+                    <input id="fromTimepicker" class="timepicker" type="time" name="fromtime">
                 </div>
                 <div class="input-field col s3">
                     <label for="toTimepicker">To Time</label>
-                    <input id="toTimepicker" class="timepicker" type="time">
+                    <input id="toTimepicker" class="timepicker" type="time" name="totime">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
-                    <select>
+                    <select name="sport">
                         <option value="" disabled selected>Choose sport</option>
                         <option value="1">Football</option>
                         <option value="2">Floorball</option>
@@ -87,7 +86,7 @@
                     <label>Sport</label>
                 </div>
                 <div class="input-field col s3">
-                    <select>
+                    <select name="level">
                         <option value="" disabled selected>Choose level</option>
                         <option value="1">Proffesional</option>
                         <option value="2">Beginner</option>
@@ -95,7 +94,7 @@
                     <label>Level</label>
                 </div>
                 <div class="input-field col s3">
-                    <select>
+                    <select name="city">
                         <option value="" disabled selected>Choose city</option>
                         <option value="1">Budapest</option>
                         <option value="2">Miskolc</option>
@@ -103,7 +102,7 @@
                     <label>City</label>
                 </div>
                 <div class="input-field col s3">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Search
+                    <button class="btn waves-effect waves-light" type="submit">Search
                         <i class="material-icons right">search</i>
                     </button>
                 </div>
@@ -111,28 +110,30 @@
         </form>
         <div class="row">
             <div class="col s4 ">
-                <div class="card-panel teal small white-text hoverable">
-                    <span>Sport</span>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th data-field="id">Date</th>
-                            <th data-field="name">Time</th>
-                            <th data-field="price">Players</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>2017.03.04.</td>
-                            <td>17:00</td>
-                            <td>10/2</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">Budapest, 1000, Valahol utca 1</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <a href="/games/1">
+                    <div class="card-panel teal small white-text hoverable">
+                        <span>Sport</span>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th data-field="id">Date</th>
+                                <th data-field="name">Time</th>
+                                <th data-field="price">Players</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>2017.03.04.</td>
+                                <td>17:00</td>
+                                <td>10/2</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </a>
             </div>
             <div class="col s4 ">
                 <div class="card-panel teal small white-text hoverable">

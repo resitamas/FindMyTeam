@@ -5,13 +5,13 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.clockpicker.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/materialize.clockpicker.js"></script>
-    <script type="text/javascript" src="js/jquery.materialize-autocomplete.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
+    <script type="text/javascript" src="/public/js/jquery.materialize-autocomplete.min.js"></script>
     <script type="text/javascript">
         $(function(){
             $('.datepicker').pickadate({
@@ -90,6 +90,7 @@
 
             single.resultCache = resultCache;
 
+
         })
     </script>
     <title>Create Game</title>
@@ -97,17 +98,17 @@
 <body>
     <!-- Dropdown Structure -->
     <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="/users/1">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="login.html">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
     </ul>
 
     <nav>
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo" style="margin-left: 100px">Find My Team</a>
+            <a href="/" class="brand-logo" style="margin-left: 100px">Find My Team</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper" style="margin-right: 100px">
-                <li><a href="create.html">Create game</a></li>
-                <li><a href="games.html">Search game</a></li>
+                <li><a href="/new/games">Create game</a></li>
+                <li><a href="/games">Search game</a></li>
                 <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
             </ul>
         </div>
@@ -115,7 +116,7 @@
 
     <div class="container">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" method="post" action="/games/new" id="createForm">
                 <div class="row">
                     <div class="input-field col s2">
                         <select>
@@ -278,18 +279,18 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row">
-                    <button class="btn waves-effect waves-light input-field" type="submit" name="action">Create
-                        <i class="material-icons right">send</i>
-                    </button>
-                    <button class="btn waves-effect waves-light red input-field" type="submit" name="action" style="float: right">Delete
+            </form>
+            <div class="row">
+                <button class="btn waves-effect waves-light input-field" type="submit" name="action" form="createForm">Create
+                    <i class="material-icons right">send</i>
+                </button>
+                <form action="/games/delete" method="post" class="right">
+                    <button class="btn waves-effect waves-light red input-field" type="submit" name="action">Delete
                         <i class="material-icons right">delete</i>
                     </button>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-
 </body>
 </html>

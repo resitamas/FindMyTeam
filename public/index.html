@@ -5,10 +5,10 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
     <script type="text/javascript">
         $(function(){
             $('.datepicker').pickadate({
@@ -23,33 +23,40 @@
 
     <!-- Dropdown Structure -->
     <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="/users/1">Profile</a></li>
         <li class="divider"></li>
-        <li><a href="login.html">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
     </ul>
 
     <nav>
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo" style="margin-left: 100px">Find My Team</a>
+            <a href="/" class="brand-logo" style="margin-left: 100px">Find My Team</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down valign-wrapper" style="margin-right: 100px">
-                <li><a href="create.html">Create game</a></li>
-                <li><a href="games.html">Search game</a></li>
+                <li><a href="/new/games">Create game</a></li>
+                <li><a href="/games">Search game</a></li>
                 <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle responsive-img valign"></a></li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="input-field col s2 offset-s8">
-                <label for="fromDate">From</label>
-                <input id="fromDate" type="date" class="datepicker" name="datepick"/>
+        <form action="/index" method="get">
+            <div class="row">
+                <div class="input-field col s2 offset-s6">
+                    <label for="fromDate">From</label>
+                    <input id="fromDate" type="date" class="datepicker" name="from"/>
+                </div>
+                <div class="input-field col s2">
+                    <label for="toDate">To</label>
+                    <input  id="toDate" type="date" class="datepicker" name="to">
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="submit">Search
+                        <i class="material-icons right">search</i>
+                    </button>
+                </div>
             </div>
-            <div class="input-field col s2">
-                <label for="toDate">To</label>
-                <input  id="toDate" type="date" class="datepicker" name="datepick">
-            </div>
-        </div>
+        </form>
 
         <div class="row">
             <div class="col s12">
@@ -63,7 +70,7 @@
             <div id="games1">
                 <div class="row">
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -89,7 +96,7 @@
                         </a>
                     </div>
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -115,7 +122,7 @@
                         </a>
                     </div>
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -141,7 +148,7 @@
                         </a>
                     </div>
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -180,7 +187,7 @@
             <div id="games2">
                 <div class="row">
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -219,7 +226,7 @@
             <div id="games3">
                 <div class="row">
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
@@ -258,7 +265,7 @@
             <div id="games4">
                 <div class="row">
                     <div class="col s4">
-                        <a href="detailedgame.html">
+                        <a href="/games/1">
                             <div class="card-panel teal small white-text hoverable" style="width: 300px">
                                 <span>Sport</span>
                                 <table>
