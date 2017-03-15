@@ -3,7 +3,7 @@
  */
 
 /**
- * Using the template engine render the values into the template
+ * Send html
  */
 module.exports = function (objectrepository, viewName) {
 

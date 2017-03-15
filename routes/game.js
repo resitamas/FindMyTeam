@@ -3,6 +3,14 @@
  */
 
 var renderMW = require('../middleware/render');
+var authMW = require('../middleware/authentication/authMW');
+var createGameMW = require('../middleware/game/creategame');
+var searchGamesMW = require('../middleware/game/searchgames');
+var getGameMW = require('../middleware/game/getgame');
+var updateGameMW = require('../middleware/game/updategame');
+var deleteGameMW = require('../middleware/game/deletegame');
+var getMyGames = require('../middleware/game/getmygames');
+var checkEditGame = require('../middleware/authorization/checkeditgame');
 
 var gameModel = require('../models/gameModel');
 
@@ -15,9 +23,20 @@ module.exports = function  (app, dirname) {
     };
 
     /**
+     * Main page
+     */
+    app.get(["/","/index"],
+        authMW(objectRepository),
+        getMyGames(objectRepository),
+        renderMW(objectRepository,path.join(dirname+'/public/index.html'))
+    );
+
+    /**
      * Search games page
      */
     app.get('/games',
+        authMW(objectRepository),
+        searchGamesMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/games.html'))
     );
 
@@ -25,49 +44,37 @@ module.exports = function  (app, dirname) {
      * Game information page
      */
     app.get('/games/:id',
+        authMW(objectRepository),
+        getGameMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/detailedgame.html'))
     );
 
     /**
-     * Edit game information page
+     * Edit game
      */
-    app.get('/games/edit/:id',
+    app.use('/games/edit/:id',
+        authMW(objectRepository),
+        getGameMW(objectRepository),
+        checkEditGame(objectRepository),
+        updateGameMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/create.html'))
     );
-
-    /**
-     * Create game page
-     */
-    app.get('/new/games',
-        renderMW(objectRepository,path.join(dirname+'/public/create.html'))
-    );
-
-    /**
-     * Save edited game
-     */
-    app.post('/games/edit/:id', function (req, res) {
-
-    })
 
     /**
      * Create game
      */
-    app.post('/games/new',function (req, res) {
-        res.redirect("/games/1");
-    });
+    app.use('/games/new',
+        authMW(objectRepository),
+        createGameMW(objectRepository),
+        renderMW(objectRepository,path.join(dirname+'/public/create.html'))
+    );
 
     /**
      * Delete game
      */
-    app.post('/games/delete',function (req,res) {
-        res.redirect("/index");
-    });
-
-    /**
-     * Main page
-     */
-    app.get(["/","/index"],
-        renderMW(objectRepository,path.join(dirname+'/public/index.html'))
+    app.post('/games/delete',
+        getGameMW(objectRepository),
+        deleteGameMW(objectRepository)
     );
 
 };

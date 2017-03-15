@@ -3,6 +3,10 @@
  */
 
 var renderMW = require('../middleware/render');
+var authMW = require('../middleware/authentication/authMW');
+var checkEditProfileMW = require('../middleware/authorization/checkeditprofile');
+var getUserMW = require('../middleware/user/getuser');
+var editUserMW = require('../middleware/user/edituser');
 
 var path = require("path");
 
@@ -18,21 +22,20 @@ module.exports = function  (app, dirname) {
      * User information page
      */
     app.get('/users/:id',
+        authMW(objectRepository),
+        getUserMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/profile.html'))
     );
 
     /**
      * Edit user information page
      */
-    app.get('/users/edit/:id',
+    app.use('/users/edit/:id',
+        authMW(objectRepository),
+        getUserMW(objectRepository),
+        checkEditProfileMW(objectRepository),
+        editUserMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/editprofile.html'))
     );
-
-    /**
-     * Save edited user
-     */
-    app.post('/users/edit/:id', function (req, res) {
-        res.redirect("/users/"+req.params.id)
-    });
 
 };

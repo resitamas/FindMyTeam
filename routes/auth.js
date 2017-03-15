@@ -2,6 +2,10 @@
  * Created by Resi Tamas on 2017-03-14.
  */
 var renderMW = require('../middleware/render');
+var inverseAuthMW = require('../middleware/authentication/inverseauth');
+var createUserMW = require('../middleware/user/createuser');
+var loginMW = require('../middleware/authentication/login');
+var logoutMW = require('../middleware/authentication/logout');
 
 var userModel = require('../models/userModel');
 
@@ -16,44 +20,27 @@ module.exports = function (app, dirname) {
     /**
      * Login page
      */
-    app.get('/login',
+    app.use('/login',
+        inverseAuthMW(objectRepository),
+        loginMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/login.html'))
     );
 
     /**
      * Register page
      */
-    app.get('/register',
+    app.use('/register',
+        inverseAuthMW(objectRepository),
+        createUserMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/register.html'))
-    )
+    );
 
     /**
-     * Login
+     * Log out
      */
-    app.post('/login',function (req, res) {
-        console.log("Login clicked!");
-        res.redirect('/index');
-    });
+    app.get('/logout',
+        logoutMW(objectRepository),
+        renderMW(objectRepository,path.join(dirname+'/public/login.html'))
+    );
 
-
-    app.get('/logout', function (req, res) {
-        console.log("Logout clicked!");
-        res.redirect('/login');
-    });
-
-    /**
-     * Register
-     */
-    app.post('/register', function (req, res) {
-        console.log("Register clicked!");
-        res.redirect('/');
-    });
-
-    /**
-     * Logout
-     */
-    app.post('/logout',function () {
-
-    });
-
-}
+};
