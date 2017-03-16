@@ -2,40 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a31357e6-2e1d-446c-ae0c-0e7bd3647cfc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/application/join.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/application/refuse.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/application/request.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authentication/authMW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authentication/inverseauth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authentication/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authentication/logout.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authorization/checkeditgame.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/authorization/checkeditprofile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/creategame.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/deletegame.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/getgame.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/getmygames.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/searchgames.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/game/updategame.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/mygames.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/user/createuser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/user/edituser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/user/getuser.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/routes/apply.js" afterPath="$PROJECT_DIR$/routes/application.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/render.js" afterPath="$PROJECT_DIR$/middleware/render.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/authentication/authMW.js" afterPath="$PROJECT_DIR$/middleware/authentication/authMW.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/authentication/login.js" afterPath="$PROJECT_DIR$/middleware/authentication/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/game/creategame.js" afterPath="$PROJECT_DIR$/middleware/game/creategame.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/user/createuser.js" afterPath="$PROJECT_DIR$/middleware/user/createuser.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/create.html" afterPath="$PROJECT_DIR$/public/create.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/materialize.css" afterPath="$PROJECT_DIR$/public/css/materialize.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/detailedgame.html" afterPath="$PROJECT_DIR$/public/detailedgame.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/editprofile.html" afterPath="$PROJECT_DIR$/public/editprofile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/games.html" afterPath="$PROJECT_DIR$/public/games.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/profile.html" afterPath="$PROJECT_DIR$/public/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/auth.js" afterPath="$PROJECT_DIR$/routes/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/game.js" afterPath="$PROJECT_DIR$/routes/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/user.js" afterPath="$PROJECT_DIR$/routes/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/login.html" afterPath="$PROJECT_DIR$/public/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/register.html" afterPath="$PROJECT_DIR$/public/register.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,11 +32,21 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="5" column="57" lean-forward="false" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+            <state relative-caret-position="646">
+              <caret line="67" column="16" lean-forward="false" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
               <folding>
                 <element signature="e#0#47#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="creategame.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/middleware/game/creategame.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,8 +54,8 @@
       <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
               <folding>
                 <element signature="e#0#47#0" expanded="false" />
               </folding>
@@ -77,11 +63,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authMW.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/middleware/authentication/authMW.js">
+      <file leaf-file-name="login.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/middleware/authentication/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+            <state relative-caret-position="459">
+              <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createuser.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/middleware/user/createuser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="65" column="61" lean-forward="true" selection-start-line="65" selection-start-column="61" selection-end-line="65" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inverseauth.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/middleware/authentication/inverseauth.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -90,73 +106,21 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+            <state relative-caret-position="289">
+              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/application.js">
+      <file leaf-file-name="create.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/create.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="36" column="33" lean-forward="false" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+            <state relative-caret-position="1969">
+              <caret line="161" column="26" lean-forward="false" selection-start-line="161" selection-start-column="26" selection-end-line="161" selection-end-column="26" />
               <folding>
-                <element signature="e#0#47#0" expanded="false" />
+                <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="refuse.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/middleware/application/refuse.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/middleware/application/request.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="join.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/middleware/application/join.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#47#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="checkeditgame.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/middleware/authorization/checkeditgame.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -197,14 +161,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/public/game.html" />
         <option value="$PROJECT_DIR$/public/editgame.html" />
         <option value="$PROJECT_DIR$/public/search.html" />
         <option value="$PROJECT_DIR$/models/user.js" />
         <option value="$PROJECT_DIR$/models/gameModel.js" />
-        <option value="$PROJECT_DIR$/public/login.html" />
-        <option value="$PROJECT_DIR$/public/register.html" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/routes/apply.js" />
         <option value="$PROJECT_DIR$/middleware/render.js" />
@@ -221,15 +182,12 @@
         <option value="$PROJECT_DIR$/middleware/auth/inverseauth.js" />
         <option value="$PROJECT_DIR$/middleware/auth/logout.js" />
         <option value="$PROJECT_DIR$/middleware/auth/auth.js" />
-        <option value="$PROJECT_DIR$/middleware/user/createuser.js" />
         <option value="$PROJECT_DIR$/middleware/auth/login.js" />
-        <option value="$PROJECT_DIR$/public/create.html" />
         <option value="$PROJECT_DIR$/public/detailedgame.html" />
         <option value="$PROJECT_DIR$/public/editprofile.html" />
         <option value="$PROJECT_DIR$/public/games.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/profile.html" />
-        <option value="$PROJECT_DIR$/middleware/game/creategame.js" />
         <option value="$PROJECT_DIR$/middleware/game/searchgames.js" />
         <option value="$PROJECT_DIR$/middleware/game/getgame.js" />
         <option value="$PROJECT_DIR$/middleware/game/updategame.js" />
@@ -243,11 +201,17 @@
         <option value="$PROJECT_DIR$/middleware/application/request.js" />
         <option value="$PROJECT_DIR$/middleware/application/refuse.js" />
         <option value="$PROJECT_DIR$/routes/auth.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/application.js" />
         <option value="$PROJECT_DIR$/routes/game.js" />
         <option value="$PROJECT_DIR$/routes/user.js" />
         <option value="$PROJECT_DIR$/middleware/authentication/authMW.js" />
+        <option value="$PROJECT_DIR$/public/login.html" />
+        <option value="$PROJECT_DIR$/middleware/game/creategame.js" />
+        <option value="$PROJECT_DIR$/public/create.html" />
+        <option value="$PROJECT_DIR$/public/register.html" />
+        <option value="$PROJECT_DIR$/middleware/authentication/login.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/middleware/user/createuser.js" />
       </list>
     </option>
   </component>
@@ -593,18 +557,19 @@
       <workItem from="1488541371787" duration="489000" />
       <workItem from="1489478090796" duration="19000" />
       <workItem from="1489478261577" duration="15343000" />
-      <workItem from="1489533421310" duration="21042000" />
+      <workItem from="1489533421310" duration="32713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92886000" />
+    <option name="totallyTimeSpent" value="104557000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13452381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17559524" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32751092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -655,7 +620,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css" />
     <entry file="file://$PROJECT_DIR$/npm-debug.log" />
     <entry file="file://$PROJECT_DIR$/node_modules/materialize-clockpicker/images/material-clock-dark.PNG">
       <provider selected="true" editor-type-id="images">
@@ -731,22 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="140" column="29" lean-forward="true" selection-start-line="138" selection-start-column="20" selection-end-line="140" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -779,58 +727,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" lean-forward="true" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/authentication/inverseauth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/middleware/render.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/user/createuser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/authentication/logout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/authentication/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="109" column="29" lean-forward="false" selection-start-line="109" selection-start-column="29" selection-end-line="109" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -898,14 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/game/creategame.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="16" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -982,14 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1000,30 +884,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="57" lean-forward="false" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="7" column="54" lean-forward="true" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#47#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <caret line="7" column="54" lean-forward="false" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
           <folding>
             <element signature="e#0#47#0" expanded="false" />
           </folding>
@@ -1032,8 +896,118 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/middleware/authentication/authMW.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        <state relative-caret-position="187">
+          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="27" column="61" lean-forward="false" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/authentication/inverseauth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="67" column="16" lean-forward="false" selection-start-line="67" selection-start-column="16" selection-end-line="67" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1969">
+          <caret line="161" column="26" lean-forward="false" selection-start-line="161" selection-start-column="26" selection-end-line="161" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/express-validator/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="175" column="20" lean-forward="true" selection-start-line="175" selection-start-column="20" selection-end-line="175" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="65" column="61" lean-forward="true" selection-start-line="65" selection-start-column="61" selection-end-line="65" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/game/creategame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/authentication/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/authentication/logout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#47#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/user/createuser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
           <folding />
         </state>
       </provider>

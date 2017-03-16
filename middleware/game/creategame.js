@@ -7,9 +7,12 @@
  */
 module.exports = function (objectrepository) {
 
-    return function (req, res) {
+    return function (req, res, next) {
 
-        res.redirect('/games/1');
+        if ((typeof req.body === 'undefined') || (typeof req.body.username === 'undefined') || (typeof req.body.password === 'undefined')) {
+            res.redirect('/games/1');
+        }
+
 
 
     };

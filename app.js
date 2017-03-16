@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
 var session = require('express-session');
 
 var port = 3000;
@@ -9,6 +10,23 @@ var port = 3000;
 app.use("/public",express.static(path.join(__dirname,'/public')));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(expressValidator({
+    customValidators: {
+        isTheSame: function(param, to) {
+            return param === to;
+        },
+        isOneOfThem : function (param, list) {
+
+            for (i = 0; i < list.length; i++) {
+                if (list[i] == param) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+}));
 
 /**
  * Session above all
