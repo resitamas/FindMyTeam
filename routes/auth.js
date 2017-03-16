@@ -14,7 +14,7 @@ var path = require("path");
 module.exports = function (app, dirname) {
 
     var objectRepository = {
-        userModel: userModel
+        userModel: new userModel()
     };
 
     /**

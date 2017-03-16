@@ -15,7 +15,7 @@ var userModel = require('../models/userModel');
 module.exports = function  (app, dirname) {
 
     var objectRepository = {
-        userModel: userModel
+        userModel: new userModel()
     };
 
     /**

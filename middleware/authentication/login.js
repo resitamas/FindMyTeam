@@ -2,12 +2,17 @@
  * Created by Resi Tamas on 2017-03-15.
  */
 
+var requireOption = require('../requireoption').requireOption;
+
 /**
  * Login
  *  -validate body
+ *  -check user exists
  *  -login user and redirect to main page
  */
 module.exports = function (objectrepository) {
+
+    var userModel = requireOption(objectrepository , 'userModel');
 
     return function (req, res, next) {
 
@@ -27,11 +32,20 @@ module.exports = function (objectrepository) {
     
     function doWork(req, res, next) {
 
-        //TODO: Check if user exists
+        var userModel = requireOption(objectrepository , 'userModel');
 
-        req.session.userid = 1;
-        res.redirect('/');
+        userModel.findOne({name : req.body.username, pass: req.body.password}, function (err, result) {
 
+            if (err) {
+                return next(err);
+            }
+
+            if (result) {
+                req.session.userid = result.id;
+                res.redirect('/');
+            }
+
+            return next();
+        })
     }
-    
 };

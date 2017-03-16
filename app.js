@@ -12,6 +12,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(expressValidator({
     customValidators: {
+        isArray: function(value) {
+            return Array.isArray(value);
+        },
         isTheSame: function(param, to) {
             return param === to;
         },
@@ -62,7 +65,8 @@ require('./routes/application')(app);
  * Standard error handler
  */
 app.use(function (err, req, res, next) {
-    res.status(500).send('Sorry! Error occured!');
+
+    res.status(500).sendFile(path.join(__dirname+'/public/error.html'));
 
     //Flush out the stack to the console
     console.error(err.stack);
