@@ -35,6 +35,15 @@ User.prototype.findOne = function (criteria, cb) {
     return cb(null, UserInstanceMock);
 };
 
+User.prototype.findAll = function (name, cb) {
+
+    var users = [
+        UserInstanceMock, UserInstanceMock, UserInstanceMock
+    ]
+
+    return cb(null, users);
+}
+
 /**
  * Save the item to the db
  * @param cb error first callback

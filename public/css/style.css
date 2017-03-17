@@ -16,3 +16,6 @@
     background-color: #dddddd;
 }
 
+.secondary-content i:hover {
+    cursor: pointer;
+}

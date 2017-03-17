@@ -3,9 +3,11 @@
  */
 
 var renderMW = require('../middleware/render');
+var jsonSenderMW = require('../middleware/jsonsender');
 var authMW = require('../middleware/authentication/authMW');
 var checkEditProfileMW = require('../middleware/authorization/checkeditprofile');
 var getUserMW = require('../middleware/user/getuser');
+var getUsersMW = require('../middleware/user/getusers');
 var editUserMW = require('../middleware/user/edituser');
 
 var path = require("path");
@@ -36,6 +38,15 @@ module.exports = function  (app, dirname) {
         checkEditProfileMW(objectRepository),
         editUserMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/editprofile.html'))
+    );
+
+    /**
+     * Get users by name
+     */
+    app.get('/users',
+        authMW(objectRepository),
+        getUsersMW(objectRepository),
+        jsonSenderMW('users')
     );
 
 };

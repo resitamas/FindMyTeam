@@ -8,11 +8,14 @@
     <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/public/css/materialize.clockpicker.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <script type="text/javascript" src="/public/js/jquery-3.2.0.min.js"></script>
+    <!--<script type="text/javascript" src="/public/js/knockout.min.js"></script>-->
     <script type="text/javascript" src="/public/js/materialize.min.js"></script>
     <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
     <script type="text/javascript" src="/public/js/jquery.materialize-autocomplete.min.js"></script>
     <script type="text/javascript">
+
         $(function(){
             $('.datepicker').pickadate({
                 selectMonths: true,
@@ -30,68 +33,164 @@
                 },
                 dropdown: {
                     el: '#singleDropdown'
+                },
+                getData: function (value, cb) {
+
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        contentType: 'application/json',
+                        url: "/users?name=%s",
+                        data: {
+                            name: value
+                        },
+                        success: function (data) {
+
+                            selectedData = undefined;
+
+                            cb(value,data);
+                        }
+
+                    });
+                },
+                onSelect: function (item) {
+
+                    selectedData = item;
+
                 }
             });
 
-            var resultCache = {
-                'A': [
-                    {
-                        id: 'Abe',
-                        text: 'Abe'
-                    },
-                    {
-                        id: 'Ari',
-                        text: 'Ari'
-                    }
-                ],
-                'B': [
-                    {
-                        id: 'Baz',
-                        text: 'Baz'
-                    }
-                ],
-                'BA': [
-                    {
-                        id: 'Baz',
-                        text: 'Baz'
-                    }
-                ],
-                'BAZ': [
-                    {
-                        id: 'Baz',
-                        text: 'Baz'
-                    }
-                ],
-                'AB': [
-                    {
-                        id: 'Abe',
-                        text: 'Abe'
-                    }
-                ],
-                'ABE': [
-                    {
-                        id: 'Abe',
-                        text: 'Abe'
-                    }
-                ],
-                'AR': [
-                    {
-                        id: 'Ari',
-                        text: 'Ari'
-                    }
-                ],
-                'ARI': [
-                    {
-                        id: 'Ari',
-                        text: 'Ari'
-                    }
-                ]
-            };
-
-            single.resultCache = resultCache;
-
-
         })
+
+        var selectedData = undefined;
+
+        var players = [];
+        var invites = [];
+        var requests = [];
+
+        function showUserInfo() {
+            window.open('/users/1','_blank');
+        }
+
+        function removeFromPlayers(element) {
+
+            var parent = $(element).closest("li");
+
+            changeClass(parent,"red", "green");
+
+            players = removeFrom(players,parseInt(parent.attr("data-userid")));
+
+            $("#participants").val(JSON.stringify(players));
+
+        }
+
+        function removeFromInvites(element) {
+
+            var parent = $(element).closest("li");
+
+            changeClass(parent,"red", "green");
+
+            invites = removeFrom(invites,parseInt(parent.attr("data-userid")));
+
+            $("#invites").val(JSON.stringify(invites));
+
+        }
+
+        function removeFromRequests(element) {
+
+            var parent = $(element).closest("li");
+
+            changeClass(parent,"red", "green");
+
+            requests = removeFrom(requests,parseInt(parent.attr("data-userid")));
+
+            $("#requests").val(JSON.stringify(requests));
+
+        }
+
+        function addFromRequests(element) {
+
+            var parent = $(element).closest("li");
+
+            changeClass(parent,"green", "red");
+
+            requests = addTo(requests,parseInt(parent.attr("data-userid")));
+
+            $("#requests").val(JSON.stringify(requests));
+
+        }
+
+        function changeClass(parent, newCssClass, oldCssClass) {
+
+            parent.removeClass(oldCssClass);
+
+            if (parent.hasClass(newCssClass)){
+                parent.removeClass(newCssClass);
+            } else {
+                parent.addClass(newCssClass);
+            }
+        }
+
+        function removeFrom(array, element) {
+
+            var index = array.indexOf(element);
+
+            if (index > -1) {
+                array.splice(index,1);
+            }
+
+            return array;
+        }
+
+        function addTo(array, element) {
+
+            if ($.inArray(element,array) == -1) {
+                array.push(element);
+            }
+
+            return array;
+        }
+        
+        function invite() {
+
+            if (selectedData != undefined) {
+
+                var length = invites.length;
+
+                invites = addTo(invites, selectedData.id);
+
+                $("#invites").val(JSON.stringify(invites));
+
+                if (length != invites.length) {
+                    addToCollection(selectedData.text.split("(")[0],selectedData.id);
+                }
+
+                $('#singleInput').get(0).value = "";
+                selectedData = undefined;
+            }
+        }
+
+        function addToCollection(name, id) {
+
+            var str = getHTMLString(name, id);
+
+            $("#invitesCollection").get(0).innerHTML += str;
+        }
+
+        function getHTMLString(userName, userId) {
+
+            var str = "<li class='collection-item avatar hoverable' data-userid='"+userId+"'>";
+            str += "<img src='https://avatars.githubusercontent.com/u/17765383?v=3&s=40' alt='' class='circle'>";
+            str += "<span class='title black-text'>"+userName+"</span>";
+            str += "<div class='secondary-content'>";
+            str += "<i class='material-icons' onclick='removeFromInvites(this)'>remove</i>";
+            str += "<i class='material-icons' onclick='showUserInfo()'>info</i>";
+            str += "</div></li>"
+
+            return str;
+        }
+
+        
     </script>
     <title>Create Game</title>
 </head>
@@ -117,6 +216,9 @@
     <div class="container">
         <div class="row">
             <form class="col s12" method="post" action="/games/new" id="createForm">
+                <input id="participants" type="hidden" name="players" value="[]"/>
+                <input id="invites" type="hidden" name="invites" value="[]"/>
+                <input id="requests" type="hidden" name="requests" value="[]"/>
                 <div class="row">
                     <div class="input-field col s2">
                         <select name="sport">
@@ -181,10 +283,10 @@
                     </div>
                     <ul id="singleDropdown" class="dropdown-content ac-dropdown"></ul>
                 </div>
-                <label class="active" for="singleInput">Invite player: </label>
+                <label class="active" for="singleInput">Invite player</label>
             </div>
             <div class="col s2">
-                <button class="btn waves-effect waves-light input-field" type="submit" name="action" style="float: right">Invite
+                <button class="btn waves-effect waves-light input-field" type="button" onclick="invite()" style="float: right">Invite
                     <i class="material-icons right">add</i>
                 </button>
             </div>
@@ -193,57 +295,57 @@
                 <div class="col s4">
                     <ul class="collection with-header">
                         <li class="collection-header"><h5>Players (3)</h5></li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="1">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="/user/1" target="_blank"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="2">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="2">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="col s4">
-                    <ul class="collection with-header">
+                    <ul id="invitesCollection" class="collection with-header">
                         <li class="collection-header"><h5>Invited players (3)</h5></li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="3">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="2">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="4">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title black-text">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
                     </ul>
@@ -251,31 +353,31 @@
                 <div class="col s4">
                     <ul class="collection with-header">
                         <li class="collection-header"><h5>Player requests (3)</h5></li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="1">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">add</i></a>
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                                <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="2">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">add</i></a>
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                                <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
-                        <li class="collection-item avatar hoverable">
+                        <li class="collection-item avatar hoverable" data-userid="3">
                             <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
                             <span class="title">Rési Tamás</span>
                             <div class="secondary-content">
-                                <a href="index.html"><i class="material-icons">add</i></a>
-                                <a href="index.html"><i class="material-icons">remove</i></a>
-                                <a href="index.html"><i class="material-icons">info</i></a>
+                                <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                                <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                                <i class="material-icons" onclick="showUserInfo()">info</i>
                             </div>
                         </li>
                     </ul>

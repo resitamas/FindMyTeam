@@ -31,7 +31,7 @@ module.exports = function (objectrepository) {
         req.checkBody("location",'Add location').notEmpty();
         req.checkBody("description",'Enter description').notEmpty();
         req.checkBody("type",'Enter type').isOneOfThem(types);
-        req.checkBody("players",'Players should be an array').isArray();
+        req.checkBody("participants",'Players should be an array').isArray();
         req.checkBody("invited",'Invited should be an array').isArray();
         req.checkBody("requested",'Requested should be an array').isArray();
 
