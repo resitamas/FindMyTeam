@@ -22,10 +22,10 @@ var GameInstanceMock = {
     description: 'Come Come Come',
     maxplayers: 10,
     loaction: 'Budapest, 1111, Valahol utca 1',
-    type: "private",
-    players: [1,1,1],
+    type: "public",
+    players: [],
     invited: [1],
-    requested: [1]
+    requested: []
 };
 
 /**
@@ -59,7 +59,7 @@ Game.prototype.myGames = function (criteria, cb) {
 };
 
 /**
- * Find my games with the criteria
+ * Find games with the criteria
  * @param criteria
  * @param cb error first callback
  * @returns {*}
@@ -71,14 +71,14 @@ Game.prototype.findGames = function (criteria, cb) {
     return cb(null,games);
 };
 
-
 /**
  * Save the item to the db
  * @param cb error first callback
  * @returns {*}
  */
-Game.prototype.save = function (cb) {
-    return cb(null, this);
+Game.prototype.save = function (game) {
+
+    GameInstanceMock = game;
 };
 
 /**

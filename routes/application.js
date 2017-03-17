@@ -3,15 +3,18 @@
  */
 
 var authMW = require('../middleware/authentication/authMW');
+var getGameMW = require('../middleware/game/getgame');
 var renderMW = require('../middleware/render');
-var joinMW = require('../middleware/application/join');
-var refuseMW = require('../middleware/application/refuse');
-var requestMW = require('../middleware/application/request');
+var changeStatusWithGameMW = require('../middleware/application/changestatuswithgame');
+var checkGame = require('../middleware/authorization/checkgame');
+var checkRequestMW = require('../middleware/application/checkcanrequest');
+
+var gameModel = require('../models/gameModel');
 
 module.exports = function (app) {
 
     var objectRepository = {
-
+        gameModel: new gameModel()
     };
 
     /**
@@ -19,23 +22,39 @@ module.exports = function (app) {
      */
     app.post('/request',
         authMW(objectRepository),
-        requestMW(objectRepository)
+        getGameMW(objectRepository),
+        checkRequestMW(objectRepository),
+        changeStatusWithGameMW(objectRepository,undefined,"requested")
     );
 
     /**
-     * Join to game
+     * Play a game
      */
-    app.post('/join',
+    app.post('/play',
         authMW(objectRepository),
-        joinMW(objectRepository)
+        getGameMW(objectRepository),
+        checkGame(objectRepository,["invited"]),
+        changeStatusWithGameMW(objectRepository,["invited"],"players")
     );
 
     /**
-     * Refuse to join game
+     * Not play a game
+     */
+    app.post('/notplay',
+        authMW(objectRepository),
+        getGameMW(objectRepository),
+        checkGame(objectRepository,["players"]),
+        changeStatusWithGameMW(objectRepository,["players"], "invited")
+    );
+
+    /**
+     * Refuse an invitation
      */
     app.post('/refuse',
         authMW(objectRepository),
-        refuseMW(objectRepository)
+        getGameMW(objectRepository),
+        checkGame(objectRepository,["invited","requested"]),
+        changeStatusWithGameMW(objectRepository, ["invited", "requested"])
     );
 
 };

@@ -11,6 +11,8 @@ var updateGameMW = require('../middleware/game/updategame');
 var deleteGameMW = require('../middleware/game/deletegame');
 var getMyGames = require('../middleware/game/getmygames');
 var checkEditGame = require('../middleware/authorization/checkeditgame');
+var checkGameVisibilityMW = require('../middleware/game/checkgamevisibility');
+var checkGamesVisibilityMW = require('../middleware/game/checkgamevisibilities');
 
 var gameModel = require('../models/gameModel');
 
@@ -37,6 +39,7 @@ module.exports = function  (app, dirname) {
     app.get('/games',
         authMW(objectRepository),
         getGamesMW(objectRepository),
+        checkGamesVisibilityMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/games.html'))
     );
 
@@ -75,6 +78,7 @@ module.exports = function  (app, dirname) {
     app.get('/games/:id',
         authMW(objectRepository),
         getGameMW(objectRepository),
+        checkGameVisibilityMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/detailedgame.html'))
     );
 
