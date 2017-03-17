@@ -15,10 +15,16 @@
         $(function() {
             $('.datepicker').pickadate({
                 selectMonths: true,
-                selectYears: 15
+                selectYears: 15,
+                format: 'yyyy-mm-dd',
+                onSet: function( arg ){
+                    if ( 'select' in arg ){
+                        this.close();
+                    }
+                }
             });
             $('.timepicker').pickatime({
-                autoclose: false,
+                autoclose: true,
                 twelvehour: false,
                 default: '14:20:00'
             });
@@ -80,24 +86,24 @@
                 <div class="input-field col s3">
                     <select name="sport">
                         <option value="" disabled selected>Choose sport</option>
-                        <option value="1">Football</option>
-                        <option value="2">Floorball</option>
+                        <option value="Football">Football</option>
+                        <option value="Basketball">Basketball</option>
                     </select>
                     <label>Sport</label>
                 </div>
                 <div class="input-field col s3">
                     <select name="level">
                         <option value="" disabled selected>Choose level</option>
-                        <option value="1">Proffesional</option>
-                        <option value="2">Beginner</option>
+                        <option value="Professional">Proffesional</option>
+                        <option value="Beginner">Beginner</option>
                     </select>
                     <label>Level</label>
                 </div>
                 <div class="input-field col s3">
                     <select name="city">
                         <option value="" disabled selected>Choose city</option>
-                        <option value="1">Budapest</option>
-                        <option value="2">Miskolc</option>
+                        <option value="Budapest">Budapest</option>
+                        <option value="Miskolc">Miskolc</option>
                     </select>
                     <label>City</label>
                 </div>

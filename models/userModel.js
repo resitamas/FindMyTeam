@@ -11,7 +11,6 @@ var User = function () {
 
 /**
  * An instance
- * @type {{id: number, name: string, email: string, pass: string}}
  */
 var UserInstanceMock = {
     id: 1,

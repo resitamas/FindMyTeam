@@ -3,6 +3,8 @@
  */
 
 var requireOption = require('../requireoption').requireOption;
+var sexes = require('../../constant/constants').sexes;
+var years = require('../../constant/constants').years;
 
 /**
  * Create user
@@ -17,8 +19,8 @@ module.exports = function (objectrepository) {
         req.checkBody("email",'Enter valid e-mail').isEmail();
         req.checkBody("password",'Enter password').notEmpty();
         req.checkBody("confirm",'Enter confirmation').notEmpty();
-        req.checkBody("sex",'Choose sex').isOneOfThem(["men","women"]);
-        req.checkBody("birthyear").isOneOfThem(["2014","2015","2016"]);
+        req.checkBody("sex",'Choose sex').isOneOfThem(sexes);
+        req.checkBody("birthyear").isOneOfThem(years());
         req.checkBody("description").notEmpty();
         req.checkBody("sports",'Sports should be array').isArray();
 

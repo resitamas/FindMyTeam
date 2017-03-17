@@ -27,6 +27,14 @@ app.use(expressValidator({
             }
 
             return false;
+        },
+        isCorrectDate: function (date) {
+
+            if (date == '') {
+                return true;
+            }
+
+            return !isNaN(Date.parse(date));
         }
     }
 }));

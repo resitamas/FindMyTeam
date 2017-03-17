@@ -3,6 +3,8 @@
  */
 
 var requireOption = require('../requireoption').requireOption;
+var sexes = require('../../constant/constants').sexes;
+var years = require('../../constant/constants').years;
 
 /**
  * Edit user
@@ -20,8 +22,8 @@ module.exports = function (objectrepository) {
         }
 
         req.checkParams("id",'Add id').isInt();
-        req.checkBody("sex",'Choose sex').isOneOfThem(["men","women"]);
-        req.checkBody("year",'Choose year').isOneOfThem(["2014","2015","2016"]);
+        req.checkBody("sex",'Choose sex').isOneOfThem(sexes);
+        req.checkBody("year",'Choose year').isOneOfThem(years());
         req.checkBody("description",'Enter description').notEmpty();
         req.checkBody("sports",'Sports should be array').isArray();
 

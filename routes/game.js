@@ -5,7 +5,7 @@
 var renderMW = require('../middleware/render');
 var authMW = require('../middleware/authentication/authMW');
 var createGameMW = require('../middleware/game/creategame');
-var searchGamesMW = require('../middleware/game/searchgames');
+var getGamesMW = require('../middleware/game/getgames');
 var getGameMW = require('../middleware/game/getgame');
 var updateGameMW = require('../middleware/game/updategame');
 var deleteGameMW = require('../middleware/game/deletegame');
@@ -19,7 +19,7 @@ var path = require("path");
 module.exports = function  (app, dirname) {
 
     var objectRepository = {
-        gameModel: gameModel
+        gameModel: new gameModel()
     };
 
     /**
@@ -36,17 +36,8 @@ module.exports = function  (app, dirname) {
      */
     app.get('/games',
         authMW(objectRepository),
-        searchGamesMW(objectRepository),
+        getGamesMW(objectRepository),
         renderMW(objectRepository,path.join(dirname+'/public/games.html'))
-    );
-
-    /**
-     * Game information page
-     */
-    app.get('/games/:id',
-        authMW(objectRepository),
-        getGameMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/detailedgame.html'))
     );
 
     /**
@@ -74,7 +65,17 @@ module.exports = function  (app, dirname) {
      */
     app.post('/games/delete',
         getGameMW(objectRepository),
+        checkEditGame(objectRepository),
         deleteGameMW(objectRepository)
+    );
+
+    /**
+     * Game information page
+     */
+    app.get('/games/:id',
+        authMW(objectRepository),
+        getGameMW(objectRepository),
+        renderMW(objectRepository,path.join(dirname+'/public/detailedgame.html'))
     );
 
 };
