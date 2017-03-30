@@ -4,7 +4,6 @@
 
 var authMW = require('../middleware/authentication/authMW');
 var getGameMW = require('../middleware/game/getgame');
-var renderMW = require('../middleware/render');
 var changeStatusWithGameMW = require('../middleware/application/changestatuswithgame');
 var checkGame = require('../middleware/authorization/checkgame');
 var checkRequestMW = require('../middleware/application/checkcanrequest');

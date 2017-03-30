@@ -2,7 +2,8 @@
  * Created by Resi Tamas on 2017-03-14.
  */
 
-var renderMW = require('../middleware/render');
+
+var renderEJSMW = require('../middleware/renderEJS');
 var authMW = require('../middleware/authentication/authMW');
 var createGameMW = require('../middleware/game/creategame');
 var getGamesMW = require('../middleware/game/getgames');
@@ -18,7 +19,7 @@ var gameModel = require('../models/gameModel');
 
 var path = require("path");
 
-module.exports = function  (app, dirname) {
+module.exports = function  (app) {
 
     var objectRepository = {
         gameModel: new gameModel()
@@ -30,7 +31,7 @@ module.exports = function  (app, dirname) {
     app.get(["/","/index"],
         authMW(objectRepository),
         getMyGames(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/index.html'))
+        renderEJSMW(objectRepository,"index.ejs")
     );
 
     /**
@@ -40,7 +41,7 @@ module.exports = function  (app, dirname) {
         authMW(objectRepository),
         getGamesMW(objectRepository),
         checkGamesVisibilityMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/games.html'))
+        renderEJSMW(objectRepository,"games.ejs")
     );
 
     /**
@@ -51,7 +52,8 @@ module.exports = function  (app, dirname) {
         getGameMW(objectRepository),
         checkEditGame(objectRepository),
         updateGameMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/create.html'))
+        renderEJSMW(objectRepository,"create.ejs")
+
     );
 
     /**
@@ -60,7 +62,7 @@ module.exports = function  (app, dirname) {
     app.use('/games/new',
         authMW(objectRepository),
         createGameMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/create.html'))
+        renderEJSMW(objectRepository,"create.ejs")
     );
 
     /**
@@ -79,7 +81,7 @@ module.exports = function  (app, dirname) {
         authMW(objectRepository),
         getGameMW(objectRepository),
         checkGameVisibilityMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/detailedgame.html'))
+        renderEJSMW(objectRepository,"game.ejs")
     );
 
 };

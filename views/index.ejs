@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/index.js"></script>
+    <title>Index</title>
+</head>
+<body>
+
+<%- include('navbarLoggedIn') %>
+
+<div class="container">
+    <form action="/index" method="get">
+        <div class="row">
+            <div class="input-field col s2 offset-s6">
+                <label for="fromDate">From</label>
+                <input id="fromDate" type="date" class="datepicker" name="from"/>
+            </div>
+            <div class="input-field col s2">
+                <label for="toDate">To</label>
+                <input  id="toDate" type="date" class="datepicker" name="to">
+            </div>
+            <div class="input-field col s2">
+                <button class="btn waves-effect waves-light" type="submit">Search
+                    <i class="material-icons right">search</i>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab col s3"><a class="active" href="#games1">Games participated (4)</a></li>
+                <li class="tab col s3"><a href="#games2">Games invited (1)</a></li>
+                <li class="tab col s3 disabled"><a href="#games3">Games requested (0)</a></li>
+                <li class="tab col s3"><a href="#games4">Games organized (1)</a></li>
+            </ul>
+        </div>
+        <div id="games1">
+            <div class="row">
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+            </div>
+            <ul class="pagination center">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+        <div id="games2">
+            <div class="row">
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+            </div>
+            <ul class="pagination center">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+        <div id="games3">
+            <div class="row">
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+            </div>
+            <ul class="pagination center">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+        <div id="games4">
+            <div class="row">
+                <div class="col s4">
+                    <%- include('gameTile') %>
+                </div>
+            </div>
+            <ul class="pagination center">
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="#!">1</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="#!">3</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

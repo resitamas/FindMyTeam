@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.clockpicker.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
+    <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
+    <script type="text/javascript" src="/public/js/jquery-3.2.0.min.js"></script>
+    <!--<script type="text/javascript" src="/public/js/knockout.min.js"></script>-->
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
+    <script type="text/javascript" src="/public/js/jquery.materialize-autocomplete.min.js"></script>
+    <script type="text/javascript" src="/public/js/create.js"></script>
+    <title>Create Game</title>
+</head>
+<body>
+
+<%- include('navbarLoggedIn') %>
+
+<div class="container">
+    <div class="row">
+        <form class="col s12" method="post" action="/games/new" id="createForm">
+            <input id="participants" type="hidden" name="players" value="[]"/>
+            <input id="invites" type="hidden" name="invites" value="[]"/>
+            <input id="requests" type="hidden" name="requests" value="[]"/>
+            <div class="row">
+                <div class="input-field col s2">
+                    <select name="sport">
+                        <option value="" disabled selected>Choose sport</option>
+                        <option value="1">Football</option>
+                        <option value="2">Floorball</option>
+                    </select>
+                    <label>Sport</label>
+                </div>
+                <div class="input-field col s2">
+                    <label for="date">Date</label>
+                    <input id="date" type="date" class="datepicker" name="date"/>
+                </div>
+                <div class="input-field col s2">
+                    <label for="timepicker">Time</label>
+                    <input id="timepicker" class="timepicker" type="time" name="type">
+                </div>
+                <div class="input-field col s2">
+                    <select name="visibility">
+                        <option value="" disabled selected>Choose visibility</option>
+                        <option value="1">Private</option>
+                        <option value="2">Public</option>
+                    </select>
+                    <label>Type</label>
+                </div>
+                <div class="input-field col s1">
+                    <input id="players" type="text" class="validate" name="playercount">
+                    <label for="players">Players</label>
+                </div>
+                <div class="input-field col s2">
+                    <select name="level">
+                        <option value="" disabled selected>Choose level</option>
+                        <option value="1">Proffesional</option>
+                        <option value="2">Beginner</option>
+                    </select>
+                    <label>Level</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="location" type="text" class="validate" name="location">
+                    <label for="location">Location</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="input-field col s5">
+            <div class="autocomplete" id="single">
+                <div class="ac-input">
+                    <input type="text" id="singleInput"  placeholder="Please input e-mail or username" data-activates="singleDropdown" data-beloworigin="true" autocomplete="off">
+                </div>
+                <ul id="singleDropdown" class="dropdown-content ac-dropdown"></ul>
+            </div>
+            <label class="active" for="singleInput">Invite player</label>
+        </div>
+        <div class="col s2">
+            <button class="btn waves-effect waves-light input-field" type="button" onclick="invite()" style="float: right">Invite
+                <i class="material-icons right">add</i>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4">
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>Players (3)</h5></li>
+                <li class="collection-item avatar hoverable" data-userid="1">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="2">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="2">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col s4">
+            <ul id="invitesCollection" class="collection with-header">
+                <li class="collection-header"><h5>Invited players (3)</h5></li>
+                <li class="collection-item avatar hoverable" data-userid="3">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="2">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="4">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col s4">
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>Player requests (3)</h5></li>
+                <li class="collection-item avatar hoverable" data-userid="1">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="2">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+                <li class="collection-item avatar hoverable" data-userid="3">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title">Rési Tamás</span>
+                    <div class="secondary-content">
+                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
+                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
+                        <i class="material-icons" onclick="showUserInfo()">info</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn waves-effect waves-light input-field" type="submit" name="action" form="createForm">Create
+            <i class="material-icons right">send</i>
+        </button>
+        <form action="/games/delete" method="post" class="right">
+            <input type="hidden" name="id" value="1"/>
+            <button class="btn waves-effect waves-light red input-field" type="submit" name="action">Delete
+                <i class="material-icons right">delete</i>
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

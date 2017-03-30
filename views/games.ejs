@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.clockpicker.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
+    <script type="text/javascript" src="/public/js/games.js"></script>
+    <title>Game</title>
+</head>
+<body>
+
+<%- include('navbarLoggedIn') %>
+
+<div class="container">
+    <form action="/games" method="get">
+        <div class="row">
+            <div class="input-field col s3">
+                <label for="fromDate">From Date</label>
+                <input id="fromDate" type="date" class="datepicker" name="fromdate"/>
+            </div>
+            <div class="input-field col s3">
+                <label for="toDate">To Date</label>
+                <input  id="toDate" type="date" class="datepicker" name="todate">
+            </div>
+            <div class="input-field col s3">
+                <label for="fromTimepicker">From Time</label>
+                <input id="fromTimepicker" class="timepicker" type="time" name="fromtime">
+            </div>
+            <div class="input-field col s3">
+                <label for="toTimepicker">To Time</label>
+                <input id="toTimepicker" class="timepicker" type="time" name="totime">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <select name="sport">
+                    <option value="" disabled selected>Choose sport</option>
+                    <option value="Football">Football</option>
+                    <option value="Basketball">Basketball</option>
+                </select>
+                <label>Sport</label>
+            </div>
+            <div class="input-field col s3">
+                <select name="level">
+                    <option value="" disabled selected>Choose level</option>
+                    <option value="Professional">Proffesional</option>
+                    <option value="Beginner">Beginner</option>
+                </select>
+                <label>Level</label>
+            </div>
+            <div class="input-field col s3">
+                <select name="city">
+                    <option value="" disabled selected>Choose city</option>
+                    <option value="Budapest">Budapest</option>
+                    <option value="Miskolc">Miskolc</option>
+                </select>
+                <label>City</label>
+            </div>
+            <div class="input-field col s3">
+                <button class="btn waves-effect waves-light" type="submit">Search
+                    <i class="material-icons right">search</i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col s4 ">
+            <%- include('gameTile') %>
+        </div>
+        <div class="col s4 ">
+            <%- include('gameTile') %>
+        </div>
+        <div class="col s4 ">
+            <%- include('gameTile') %>
+        </div>
+        <div class="col s4 ">
+            <%- include('gameTile') %>
+        </div>
+    </div>
+    <ul class="pagination center">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game details</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/public/css/style.css" media="screen,projection"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/materialize.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnMvBIZTjgHPh0cgzQjXjevZ46RMccfMw&callback=myMap"></script>
+    <script type="text/javascript" src="/public/js/game.js"></script>
+</head>
+<body>
+
+<%- include('navbarLoggedIn') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col s8">
+            <div class="row">
+                <div class="col s12">
+                    <form action="/play" method="post" style="float: left">
+                        <input type="hidden" name="id" value="1"/>
+                        <button  class="btn waves-effect waves-light" type="submit">Play</button>
+                    </form>
+                    <form action="/notplay" method="post" style="float: left; margin-left: 5px">
+                        <input type="hidden" name="id" value="1"/>
+                        <button  class="btn waves-effect waves-light red" type="submit">Not play</button>
+                    </form>
+                    <form action="/request" method="post" style="float: left; margin-left: 5px">
+                        <input type="hidden" name="id" value="1"/>
+                        <button  class="btn waves-effect waves-light purple" type="submit">Request</button>
+                    </form>
+                    <a href="/games/edit/1">
+                        <button  class="btn waves-effect waves-light inline brown right" type="button">Edit</button>
+                    </a>
+                    <form action="/refuse" method="post" style="float: right; margin-right: 5px">
+                        <input type="hidden" name="id" value="1"/>
+                        <button  class="btn waves-effect waves-light grey" type="submit">Refuse</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s4">
+                    <div>
+                        <label>Sport</label>
+                    </div>
+                    <div>
+                        <h5 id="sport">Floorball</h5>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div>
+                        <label>Date</label>
+                    </div>
+                    <div>
+                        <h5 id="date">2017.04.04. 08:00</h5>
+                    </div>
+                </div>
+                <div class="col s4">
+                    <div>
+                        <label>Level</label>
+                    </div>
+                    <div>
+                        <h5 id="level">Beginner</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc viverra efficitur ipsum sit amet mattis. Fusce tristique eu libero sed lobortis. Aliquam vitae nunc eget est congue vehicula vel nec leo. Donec imperdiet nibh mattis mi vulputate fringilla. Praesent iaculis magna facilisis aliquet dictum. Aenean varius laoreet justo. Vivamus suscipit massa eget varius iaculis. Maecenas porttitor ipsum blandit, semper arcu sed, sodales dolor. Curabitur ullamcorper, sapien vel consequat iaculis, sapien mauris congue diam, vel porttitor augue dui maximus leo. In pretium, diam non interdum sollicitudin, erat odio commodo nisl, eget consectetur massa urna id elit. Aenean ut nibh sed est fermentum consectetur et ac magna. Aenean elementum ultricies sem.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <div id="map" style="width:100%;height:400px;">My map will go here</div>
+                </div>
+            </div>
+        </div>
+        <div class="col s4">
+            <ul class="collection with-header">
+                <li class="collection-header"><h5>Organizer</h5></li>
+                <a href="/users/1" target="_blank" class="collection-item avatar">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                    <p class="grey-text">
+                        mail@gmail.com
+                    </p>
+                </a>
+                <li class="collection-header"><h5>Players (10/3)</h5></li>
+                <a href="/users/1" target="_blank" class="collection-item avatar">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                </a>
+                <a href="/users/1" target="_blank" class="collection-item avatar black-text">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                </a>
+                <a href="/users/1" target="_blank" class="collection-item avatar">
+                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+                    <span class="title black-text">Rési Tamás</span>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

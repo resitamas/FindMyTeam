@@ -1,7 +1,8 @@
 /**
  * Created by Resi Tamas on 2017-03-14.
  */
-var renderMW = require('../middleware/render');
+
+var renderEJSMW = require('../middleware/renderEJS');
 var inverseAuthMW = require('../middleware/authentication/inverseauth');
 var createUserMW = require('../middleware/user/createuser');
 var loginMW = require('../middleware/authentication/login');
@@ -11,7 +12,7 @@ var userModel = require('../models/userModel');
 
 var path = require("path");
 
-module.exports = function (app, dirname) {
+module.exports = function (app) {
 
     var objectRepository = {
         userModel: new userModel()
@@ -23,7 +24,7 @@ module.exports = function (app, dirname) {
     app.use('/login',
         inverseAuthMW(objectRepository),
         loginMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/login.html'))
+        renderEJSMW(objectRepository,"login.ejs")
     );
 
     /**
@@ -32,7 +33,7 @@ module.exports = function (app, dirname) {
     app.use('/register',
         inverseAuthMW(objectRepository),
         createUserMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/register.html'))
+        renderEJSMW(objectRepository,"register.ejs")
     );
 
     /**
@@ -40,7 +41,7 @@ module.exports = function (app, dirname) {
      */
     app.get('/logout',
         logoutMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/login.html'))
+        renderEJSMW(objectRepository,"login.ejs")
     );
 
 };

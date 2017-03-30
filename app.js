@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 
+//app.set('views engine', 'ejs');
+
 var port = 3000;
 
 app.use("/public",express.static(path.join(__dirname,'/public')));
@@ -64,9 +66,9 @@ app.use(function (req, res, next) {
 /**
  * Include all the routes
  */
-require('./routes/user')(app, __dirname);
-require('./routes/auth')(app, __dirname);
-require('./routes/game')(app, __dirname);
+require('./routes/user')(app);
+require('./routes/auth')(app);
+require('./routes/game')(app);
 require('./routes/application')(app);
 
 /**
@@ -74,7 +76,9 @@ require('./routes/application')(app);
  */
 app.use(function (err, req, res, next) {
 
-    res.status(500).sendFile(path.join(__dirname+'/public/error.html'));
+    // res.status(500).sendFile(path.join(__dirname+'/public/error.html'));
+
+    res.status(500).render('error.ejs',res.tpl);
 
     //Flush out the stack to the console
     console.error(err.stack);

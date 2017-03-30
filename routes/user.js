@@ -2,7 +2,7 @@
  * Created by Resi Tamas on 2017-03-14.
  */
 
-var renderMW = require('../middleware/render');
+var renderEJSMW = require('../middleware/renderEJS');
 var jsonSenderMW = require('../middleware/jsonsender');
 var authMW = require('../middleware/authentication/authMW');
 var checkEditProfileMW = require('../middleware/authorization/checkeditprofile');
@@ -14,7 +14,7 @@ var path = require("path");
 
 var userModel = require('../models/userModel');
 
-module.exports = function  (app, dirname) {
+module.exports = function  (app) {
 
     var objectRepository = {
         userModel: new userModel()
@@ -26,7 +26,7 @@ module.exports = function  (app, dirname) {
     app.get('/users/:id',
         authMW(objectRepository),
         getUserMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/profile.html'))
+        renderEJSMW(objectRepository,"profile.ejs")
     );
 
     /**
@@ -37,7 +37,7 @@ module.exports = function  (app, dirname) {
         getUserMW(objectRepository),
         checkEditProfileMW(objectRepository),
         editUserMW(objectRepository),
-        renderMW(objectRepository,path.join(dirname+'/public/editprofile.html'))
+        renderEJSMW(objectRepository,"editprofile.ejs")
     );
 
     /**
