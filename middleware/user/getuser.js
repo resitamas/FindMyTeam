@@ -2,6 +2,9 @@
  * Created by Resi Tamas on 2017-03-15.
  */
 
+var sports = require('../../constant/constants').sports;
+var years = require('../../constant/constants').years;
+var sexes = require('../../constant/constants').sexes;
 var requireOption = require('../requireoption').requireOption;
 
 /**
@@ -36,7 +39,11 @@ module.exports = function (objectrepository) {
                 return next(err);
             }
 
+            result.age = new Date().getFullYear() - result.birthyear;
             res.tpl.user = result;
+            res.tpl.sports = sports;
+            res.tpl.years = years();
+            res.tpl.sexes = sexes;
 
             return next();
         })

@@ -26,41 +26,28 @@
             </div>
             <div class="col s2">
                 <div class="input-field">
-                    <select name="sex">
-                        <option value="" disabled selected>Choose sex</option>
-                        <option value="men">men</option>
-                        <option value="women">women</option>
-                    </select>
-                    <label>Sex</label>
+                    <%- include('select', {model: sexes, label: "Sex", choosed: user.sex}) %>
                 </div>
                 <div class="input-field">
-                    <select name="year">
-                        <option value="" disabled selected>Choose year</option>
-                        <option value="1993">1993</option>
-                        <option value="1994">1994</option>
-                        <option value="1995">1995</option>
-                    </select>
-                    <label>Birth year</label>
+                    <%- include('select', {model: years, label: "Birth Year", choosed: user.birthyear}) %>
                 </div>
             </div>
             <div class="col s7 input-field">
-                <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                <textarea id="description" class="materialize-textarea" name="description"><%= user.description %></textarea>
                 <label for="description">Description</label>
             </div>
         </div>
         <div class="row">
-            <div class="col s2">
-                <input type="checkbox" id="test1" name="sports[]" value="Football"/>
-                <label for="test1">Football</label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" id="test2" name="sports[]" value="Ice Hockey"/>
-                <label for="test2">Ice Hockey</label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" id="test3" name="sports[]" value="Basketball"/>
-                <label for="test3">Basketball</label>
-            </div>
+            <% sports.forEach(function (row) { %>
+                <div class="col s2">
+                    <% if (user.sports.indexOf(row) != -1)  {%>
+                        <input type="checkbox" id="<%= row %>" name="sports[]" value="<%= row %>" checked/>
+                    <%} else {%>
+                        <input type="checkbox" id="<%= row %>" name="sports[]" value="<%= row %>"/>
+                    <%}%>
+                    <label for="<%= row %>"><%= row %></label>
+                </div>
+            <% }); %>
         </div>
         <button class="btn-large waves-effect waves-light right" type="submit">Save
             <i class="material-icons right">save</i>

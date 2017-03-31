@@ -17,7 +17,7 @@ var UserInstanceMock = {
     name: 'Rési Tamás',
     email: 'email@gmail.com',
     password: 'asd',
-    birthyear: '2016',
+    birthyear: '1993',
     sex : 'men',
     description: 'I like sport',
     sports: ['Football','Ice Hockey']
