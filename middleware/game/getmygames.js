@@ -32,8 +32,8 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        var from = 2000-01-01;
-        var to =  2100-01-01;
+        var from = "";
+        var to =  "";
 
         if (req.query.from !== 'undefined' && req.query.from != '') {
             from = req.query.from;
@@ -49,7 +49,12 @@ module.exports = function (objectrepository) {
                 return next(err);
             }
 
-            res.tpl.games = result;
+            res.tpl.participated = result.participated;
+            res.tpl.invited = result.invited;
+            res.tpl.requested = result.requested;
+            res.tpl.organized = result.organized;
+            res.tpl.from = from;
+            res.tpl.to = to;
 
             return next();
         })

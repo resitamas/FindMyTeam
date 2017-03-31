@@ -17,14 +17,14 @@ var GameInstanceMock = {
     organizer: 1,
     sport: 'Football',
     date: '2017.04.04.',
-    time: '2016',
+    time: '10:20',
     level : 'beginner',
     description: 'Come Come Come',
     maxplayers: 10,
-    loaction: 'Budapest, 1111, Valahol utca 1',
+    location: 'Budapest, 1111, Valahol utca 1',
     type: "public",
     players: [],
-    invited: [1],
+    invited: [1,1],
     requested: []
 };
 
@@ -50,7 +50,7 @@ Game.prototype.myGames = function (criteria, cb) {
 
     var games = {
         organized: [GameInstanceMock],
-        participated: [GameInstanceMock],
+        participated: [GameInstanceMock, GameInstanceMock, GameInstanceMock],
         requested: [GameInstanceMock],
         invited: [GameInstanceMock]
     };

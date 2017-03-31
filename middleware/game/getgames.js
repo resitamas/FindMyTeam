@@ -2,6 +2,8 @@
  * Created by Resi Tamas on 2017-03-15.
  */
 
+var sports = require('../../constant/constants').sports;
+var levels = require('../../constant/constants').levels;
 var requireOption = require('../requireoption').requireOption;
 
 /**
@@ -23,8 +25,6 @@ module.exports = function (objectrepository) {
         criteria = addCriteria(criteria,req,"city");
         criteria = addCriteria(criteria,req,"level");
 
-        console.log(criteria);
-
         gameModel.findGames(criteria, function (err, games) {
 
             if (err) {
@@ -32,6 +32,11 @@ module.exports = function (objectrepository) {
             }
 
             res.tpl.games = games;
+            res.tpl.criteria = criteria;
+            res.tpl.sports = sports;
+            res.tpl.levels = levels;
+
+            console.log(criteria);
 
             return next();
         });
@@ -42,6 +47,8 @@ module.exports = function (objectrepository) {
 
         if (req.query[key] != undefined && req.query[key] != "") {
             cr[key] = req.query[key];
+        } else {
+            cr[key] = '';
         }
 
         return cr;

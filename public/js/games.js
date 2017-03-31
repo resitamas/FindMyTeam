@@ -7,6 +7,7 @@ $(function() {
         selectMonths: true,
         selectYears: 15,
         format: 'yyyy-mm-dd',
+        default: $(this).val(),
         onSet: function( arg ){
             if ( 'select' in arg ){
                 this.close();
@@ -19,12 +20,5 @@ $(function() {
         default: '14:20:00'
     });
     $('select').material_select();
-    var single = $('#singleInput').materialize_autocomplete({
-        multiple: {
-            enable: false
-        },
-        dropdown: {
-            el: '#singleDropdown'
-        }
-    });
+
 });

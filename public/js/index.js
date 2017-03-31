@@ -6,6 +6,7 @@ $(function(){
         selectMonths: true,
         selectYears: 15,
         format: 'yyyy-mm-dd',
+        default: $(this).val(),
         onSet: function( arg ){
             if ( 'select' in arg ){
                 this.close();

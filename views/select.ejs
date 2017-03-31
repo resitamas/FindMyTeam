@@ -1,0 +1,12 @@
+<select name="<%= label.toLowerCase() %>">
+    <option value="" disabled selected="selected">Choose <%= label.toLowerCase() %></option>
+    <% model.forEach(function (row) { %>
+        <% console.log(row + " " + choosed)%>
+        <% if (row == choosed)  {%>
+            <option value="<%= row %>" selected><%= row %></option>
+        <%} else {%>
+            <option value="<%= row %>"><%= row %></option>
+        <%}%>
+    <% }); %>
+</select>
+<label><%= label %></label>

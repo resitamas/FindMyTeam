@@ -23,41 +23,31 @@
         <div class="row">
             <div class="input-field col s3">
                 <label for="fromDate">From Date</label>
-                <input id="fromDate" type="date" class="datepicker" name="fromdate"/>
+                <input id="fromDate" type="date" class="datepicker" name="fromdate" value="<%= criteria.fromdate %>"/>
             </div>
             <div class="input-field col s3">
                 <label for="toDate">To Date</label>
-                <input  id="toDate" type="date" class="datepicker" name="todate">
+                <input  id="toDate" type="date" class="datepicker" name="todate" value="<%= criteria.todate %>">
             </div>
             <div class="input-field col s3">
                 <label for="fromTimepicker">From Time</label>
-                <input id="fromTimepicker" class="timepicker" type="time" name="fromtime">
+                <input id="fromTimepicker" class="timepicker" type="time" name="fromtime" value="<%= criteria.fromtime %>">
             </div>
             <div class="input-field col s3">
                 <label for="toTimepicker">To Time</label>
-                <input id="toTimepicker" class="timepicker" type="time" name="totime">
+                <input id="toTimepicker" class="timepicker" type="time" name="totime" value="<%= criteria.totime %>">
             </div>
         </div>
         <div class="row">
             <div class="input-field col s3">
-                <select name="sport">
-                    <option value="" disabled selected>Choose sport</option>
-                    <option value="Football">Football</option>
-                    <option value="Basketball">Basketball</option>
-                </select>
-                <label>Sport</label>
+                <%- include('select', {model: sports, label: "Sport", choosed: criteria.sport}) %>
             </div>
             <div class="input-field col s3">
-                <select name="level">
-                    <option value="" disabled selected>Choose level</option>
-                    <option value="Professional">Proffesional</option>
-                    <option value="Beginner">Beginner</option>
-                </select>
-                <label>Level</label>
+                <%- include('select', {model: levels, label: "Level", choosed: criteria.level}) %>
             </div>
             <div class="input-field col s3">
                 <select name="city">
-                    <option value="" disabled selected>Choose city</option>
+                    <option value="" disabled selected="selected">Choose city</option>
                     <option value="Budapest">Budapest</option>
                     <option value="Miskolc">Miskolc</option>
                 </select>
@@ -71,18 +61,11 @@
         </div>
     </form>
     <div class="row">
-        <div class="col s4 ">
-            <%- include('gameTile') %>
+        <% games.forEach(function (game) { %>
+        <div class="col s4">
+            <%- include('gameTile', {game: game} ) %>
         </div>
-        <div class="col s4 ">
-            <%- include('gameTile') %>
-        </div>
-        <div class="col s4 ">
-            <%- include('gameTile') %>
-        </div>
-        <div class="col s4 ">
-            <%- include('gameTile') %>
-        </div>
+        <% }); %>
     </div>
     <ul class="pagination center">
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>

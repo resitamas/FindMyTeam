@@ -21,11 +21,11 @@
         <div class="row">
             <div class="input-field col s2 offset-s6">
                 <label for="fromDate">From</label>
-                <input id="fromDate" type="date" class="datepicker" name="from"/>
+                <input id="fromDate" type="date" class="datepicker" name="from" value="<%= from %>"/>
             </div>
             <div class="input-field col s2">
                 <label for="toDate">To</label>
-                <input  id="toDate" type="date" class="datepicker" name="to">
+                <input  id="toDate" type="date" class="datepicker" name="to" value="<%= to %>">
             </div>
             <div class="input-field col s2">
                 <button class="btn waves-effect waves-light" type="submit">Search
@@ -38,26 +38,19 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs tabs-fixed-width">
-                <li class="tab col s3"><a class="active" href="#games1">Games participated (4)</a></li>
-                <li class="tab col s3"><a href="#games2">Games invited (1)</a></li>
-                <li class="tab col s3 disabled"><a href="#games3">Games requested (0)</a></li>
-                <li class="tab col s3"><a href="#games4">Games organized (1)</a></li>
+                <li class="tab col s3"><a class="active" href="#games1">Games participated (<%= participated.length %>)</a></li>
+                <li class="tab col s3"><a href="#games2">Games invited (<%= invited.length %>)</a></li>
+                <li class="tab col s3 disabled"><a href="#games3">Games requested (<%= requested.length %>)</a></li>
+                <li class="tab col s3"><a href="#games4">Games organized (<%= organized.length %>)</a></li>
             </ul>
         </div>
         <div id="games1">
             <div class="row">
-                <div class="col s4">
-                    <%- include('gameTile') %>
-                </div>
-                <div class="col s4">
-                    <%- include('gameTile') %>
-                </div>
-                <div class="col s4">
-                    <%- include('gameTile') %>
-                </div>
-                <div class="col s4">
-                    <%- include('gameTile') %>
-                </div>
+                <% participated.forEach(function (game) { %>
+                    <div class="col s4">
+                        <%- include('gameTile', {game: game} ) %>
+                    </div>
+                <% }); %>
             </div>
             <ul class="pagination center">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -71,9 +64,11 @@
         </div>
         <div id="games2">
             <div class="row">
+                <% invited.forEach(function (game) { %>
                 <div class="col s4">
-                    <%- include('gameTile') %>
+                    <%- include('gameTile', {game: game} ) %>
                 </div>
+                <% }); %>
             </div>
             <ul class="pagination center">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -87,9 +82,11 @@
         </div>
         <div id="games3">
             <div class="row">
+                <% requested.forEach(function (game) { %>
                 <div class="col s4">
-                    <%- include('gameTile') %>
+                    <%- include('gameTile', {game: game} ) %>
                 </div>
+                <% }); %>
             </div>
             <ul class="pagination center">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
@@ -103,9 +100,11 @@
         </div>
         <div id="games4">
             <div class="row">
+                <% organized.forEach(function (game) { %>
                 <div class="col s4">
-                    <%- include('gameTile') %>
+                    <%- include('gameTile', {game: game} ) %>
                 </div>
+                <% }); %>
             </div>
             <ul class="pagination center">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>

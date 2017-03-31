@@ -1,6 +1,6 @@
 <a href="/games/1">
     <div class="card-panel teal small white-text hoverable">
-        <span>Sport</span>
+        <span><%= game.sport%></span>
         <table>
             <thead>
             <tr>
@@ -11,12 +11,12 @@
             </thead>
             <tbody>
             <tr>
-                <td>2017.03.04.</td>
-                <td>17:00</td>
-                <td>10/2</td>
+                <td><%= game.date %></td>
+                <td><%= game.time %></td>
+                <td><%= game.maxplayers %>/<%= game.players.length %></td>
             </tr>
             <tr>
-                <td colspan="3">Budapest, 1000, Valahol utca 1</td>
+                <td colspan="3"><%= game.location %></td>
             </tr>
             </tbody>
         </table>
