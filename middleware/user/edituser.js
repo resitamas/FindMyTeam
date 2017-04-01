@@ -52,8 +52,6 @@ module.exports = function (objectrepository) {
             result.description = req.body.description;
             result.sports = req.body.sports;
 
-            console.log(req.body);
-
             res.tpl.user = result;
 
             res.redirect("/users/"+result.id);

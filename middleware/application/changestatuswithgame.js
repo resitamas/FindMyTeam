@@ -38,8 +38,6 @@ module.exports = function (objectrepository, from, to) {
 
             res.tpl.game = result;
 
-            console.log(result);
-
             res.redirect("/games/"+result.id);
 
         });

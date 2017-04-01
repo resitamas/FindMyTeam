@@ -44,6 +44,8 @@ module.exports = function (objectrepository, onlyPlayers) {
                 return next(err);
             }
 
+            res = setButtonVisibilities(req,res,result);
+
             var players = [];
 
             async.each(
@@ -69,8 +71,6 @@ module.exports = function (objectrepository, onlyPlayers) {
                     res.tpl.visibilities = visibilities;
                     res.tpl.sports = sports;
                     res.tpl.levels = levels;
-
-                    console.log(res.tpl);
 
                     return next();
                 }
@@ -154,6 +154,43 @@ module.exports = function (objectrepository, onlyPlayers) {
                 cb(null, players);
             }
         );
+    }
+
+    function setButtonVisibilities(req, res, game) {
+
+        res.tpl.editbutton = false;
+        res.tpl.refusebutton = false;
+        res.tpl.requestbutton = false;
+        res.tpl.notplaybutton = false;
+        res.tpl.playbutton = false;
+
+        var id = req.session.userid;
+
+        if (id == game.organizer) {
+            res.tpl.editbutton = true;
+
+            if (game.players.indexOf(id) != -1) {
+                res.tpl.notplaybutton = true;
+            } else {
+                res.tpl.playbutton = true;
+            }
+
+        } else {
+            if (game.players.indexOf(id) != -1) {
+                res.tpl.notplaybutton = true;
+            } else {
+                if (game.invited.indexOf(id) != -1) {
+                    res.tpl.refusebutton = true;
+                    res.tpl.playbutton = true;
+                } else {
+                    if (game.requested.indexOf(id) != -1) {
+                        res.tpl.requestbutton = true;
+                    }
+                }
+            }
+        }
+
+        return res;
     }
 
 };

@@ -36,8 +36,6 @@ module.exports = function (objectrepository) {
             res.tpl.sports = sports;
             res.tpl.levels = levels;
 
-            console.log(criteria);
-
             return next();
         });
     };

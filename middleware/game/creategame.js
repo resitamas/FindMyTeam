@@ -52,6 +52,10 @@ module.exports = function (objectrepository) {
                 res.tpl.sports = sports;
                 res.tpl.levels = levels;
 
+                res.tpl.playerids = JSON.stringify([]);
+                res.tpl.invitedids = JSON.stringify([]);
+                res.tpl.requestsids = JSON.stringify([]);
+
                 res.tpl.playerslabel = "Players (0)";
                 res.tpl.invitedlabel = "Invites (0)";
                 res.tpl.requestedlabel = "Requests (0)";

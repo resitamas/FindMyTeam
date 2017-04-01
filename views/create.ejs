@@ -25,9 +25,10 @@
 <div class="container">
     <div class="row">
         <form class="col s12" method="post" action="/games/new" id="createForm">
-            <input id="participants" type="hidden" name="playersids" value="<%= game.playerids %>"/>
-            <input id="invites" type="hidden" name="invitesids" value="<%= game.invitedids%> "/>
-            <input id="requests" type="hidden" name="requestsids" value="<%= game.requestsids %>"/>
+            <% console.log(playerids) %>
+            <input id="participants" type="hidden" name="playersids" value="<%= playerids %>"/>
+            <input id="invites" type="hidden" name="invitesids" value="<%= invitedids%> "/>
+            <input id="requests" type="hidden" name="requestsids" value="<%= requestsids %>"/>
             <div class="row">
                 <div class="input-field col s2">
                     <%- include('select', {model: sports, label: "Sport", choosed: game.sport}) %>

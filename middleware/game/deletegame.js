@@ -19,7 +19,6 @@ module.exports = function (objectrepository) {
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
-                console.log(result.array());
                 return next();
             }
 
