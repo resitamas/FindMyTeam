@@ -28,7 +28,7 @@ function years() {
 }
 
 var types = [
-    'private', 'public'
+    'Private', 'Public'
 ]
 
 module.exports.sports = sports;

@@ -24,50 +24,35 @@
 <div class="container">
     <div class="row">
         <form class="col s12" method="post" action="/games/new" id="createForm">
-            <input id="participants" type="hidden" name="players" value="[]"/>
-            <input id="invites" type="hidden" name="invites" value="[]"/>
-            <input id="requests" type="hidden" name="requests" value="[]"/>
+            <input id="participants" type="hidden" name="playersids" value="<%= game.playerids %>"/>
+            <input id="invites" type="hidden" name="invitesids" value="<%= game.invitedids%> "/>
+            <input id="requests" type="hidden" name="requestsids" value="<%= game.requestsids %>"/>
             <div class="row">
                 <div class="input-field col s2">
-                    <select name="sport">
-                        <option value="" disabled selected>Choose sport</option>
-                        <option value="1">Football</option>
-                        <option value="2">Floorball</option>
-                    </select>
-                    <label>Sport</label>
+                    <%- include('select', {model: sports, label: "Sport", choosed: game.sport}) %>
                 </div>
                 <div class="input-field col s2">
                     <label for="date">Date</label>
-                    <input id="date" type="date" class="datepicker" name="date"/>
+                    <input id="date" type="date" class="datepicker" name="date" value="<%= game.date %>"/>
                 </div>
                 <div class="input-field col s2">
                     <label for="timepicker">Time</label>
-                    <input id="timepicker" class="timepicker" type="time" name="type">
+                    <input id="timepicker" class="timepicker" type="time" name="time" value="<%= game.time %>" >
                 </div>
-                <div class="input-field col s2">
-                    <select name="visibility">
-                        <option value="" disabled selected>Choose visibility</option>
-                        <option value="1">Private</option>
-                        <option value="2">Public</option>
-                    </select>
-                    <label>Type</label>
+                <div class="input-field col s3">
+                    <%- include('select', {model: visibilities, label: "Visibility", choosed: game.visibility}) %>
                 </div>
                 <div class="input-field col s1">
-                    <input id="players" type="text" class="validate" name="playercount">
+                    <input id="players" type="text" class="validate" name="playercount" value="<%= game.maxplayers %>">
                     <label for="players">Players</label>
                 </div>
                 <div class="input-field col s2">
-                    <select name="level">
-                        <option value="" disabled selected>Choose level</option>
-                        <option value="1">Proffesional</option>
-                        <option value="2">Beginner</option>
-                    </select>
-                    <label>Level</label>
+                    <%- include('select', {model: levels, label: "Level", choosed: game.level}) %>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="location" type="text" class="validate" name="location">
+                    <input id="location" type="text" class="validate" name="location" value="<%= game.location %>">
                     <label for="location">Location</label>
                 </div>
             </div>
@@ -75,7 +60,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="description" class="materialize-textarea" name="description"></textarea>
+                            <textarea id="description" class="materialize-textarea" name="description"><%= game.description %></textarea>
                             <label for="description">Description</label>
                         </div>
                     </div>
@@ -102,92 +87,17 @@
     <div class="row">
         <div class="col s4">
             <ul class="collection with-header">
-                <li class="collection-header"><h5>Players (3)</h5></li>
-                <li class="collection-item avatar hoverable" data-userid="1">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="2">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="2">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromPlayers(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
+                <%- include('collectionWithIcons', {model: game.players, label: playerslabel, withAddOption: false, type: "players" }) %>
             </ul>
         </div>
         <div class="col s4">
             <ul id="invitesCollection" class="collection with-header">
-                <li class="collection-header"><h5>Invited players (3)</h5></li>
-                <li class="collection-item avatar hoverable" data-userid="3">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="2">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="4">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="removeFromInvites(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
+                <%- include('collectionWithIcons', {model: game.invited, label: invitedlabel, withAddOption: false, type: "invites"}) %>
             </ul>
         </div>
         <div class="col s4">
             <ul class="collection with-header">
-                <li class="collection-header"><h5>Player requests (3)</h5></li>
-                <li class="collection-item avatar hoverable" data-userid="1">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
-                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="2">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
-                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
-                <li class="collection-item avatar hoverable" data-userid="3">
-                    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title">Rési Tamás</span>
-                    <div class="secondary-content">
-                        <i class="material-icons" onclick="addFromRequests(this)">add</i>
-                        <i class="material-icons" onclick="removeFromRequests(this)">remove</i>
-                        <i class="material-icons" onclick="showUserInfo()">info</i>
-                    </div>
-                </li>
+                <%- include('collectionWithIcons', {model: game.requested, label: requestedlabel, withAddOption: true, type: "requests" }) %>
             </ul>
         </div>
     </div>

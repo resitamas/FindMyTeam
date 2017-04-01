@@ -1,15 +1,31 @@
 /**
  * Created by Resi Tamas on 30/03/2017.
  */
+
+var players = [];
+var invites = [];
+var requests = [];
+
 $(function(){
+
+    players = JSON.parse($('#participants').val());
+    invites = JSON.parse($('#invites').val());
+    requests = JSON.parse($('#requests').val());
+
     $('.datepicker').pickadate({
         selectMonths: true,
-        selectYears: 15
+        selectYears: 15,
+        format: 'yyyy-mm-dd',
+        default: $(this).val(),
+        onSet: function( arg ){
+            if ( 'select' in arg ){
+                this.close();
+            }
+        }
     });
     $('#timepicker').pickatime({
-        autoclose: false,
-        twelvehour: false,
-        default: '14:20:00'
+        autoclose: true,
+        twelvehour: false
     });
     $('select').material_select();
     var single = $('#singleInput').materialize_autocomplete({
@@ -47,14 +63,23 @@ $(function(){
 
 })
 
-var selectedData = undefined;
-
-var players = [];
-var invites = [];
-var requests = [];
-
 function showUserInfo() {
     window.open('/users/1','_blank');
+}
+
+
+function remove(element, type) {
+
+    if (type == "players") {
+        removeFromPlayers(element);
+    } else {
+        if (type == "invites") {
+            removeFromInvites(element);
+        } else {
+            removeFromRequests(element);
+        }
+    }
+
 }
 
 function removeFromPlayers(element) {
@@ -122,6 +147,8 @@ function removeFrom(array, element) {
 
     if (index > -1) {
         array.splice(index,1);
+    } else {
+        array.push(element);
     }
 
     return array;
@@ -131,6 +158,10 @@ function addTo(array, element) {
 
     if ($.inArray(element,array) == -1) {
         array.push(element);
+    } else {
+
+        var index = array.indexOf(element)
+        array.splice(index,1);
     }
 
     return array;
@@ -148,6 +179,7 @@ function invite() {
 
         if (length != invites.length) {
             addToCollection(selectedData.text.split("(")[0],selectedData.id);
+            $('#invitesCollection #header').text("Invites (" + invites.length + ")")
         }
 
         $('#singleInput').get(0).value = "";
@@ -168,7 +200,7 @@ function getHTMLString(userName, userId) {
     str += "<img src='https://avatars.githubusercontent.com/u/17765383?v=3&s=40' alt='' class='circle'>";
     str += "<span class='title black-text'>"+userName+"</span>";
     str += "<div class='secondary-content'>";
-    str += "<i class='material-icons' onclick='removeFromInvites(this)'>remove</i>";
+    str += "<i class='material-icons' onclick='remove(this,\"invites\")'>remove</i>";
     str += "<i class='material-icons' onclick='showUserInfo()'>info</i>";
     str += "</div></li>"
 

@@ -9,11 +9,13 @@ var checkGame = require('../middleware/authorization/checkgame');
 var checkRequestMW = require('../middleware/application/checkcanrequest');
 
 var gameModel = require('../models/gameModel');
+var userModel = require('../models/userModel');
 
 module.exports = function (app) {
 
     var objectRepository = {
-        gameModel: new gameModel()
+        gameModel: new gameModel(),
+        userModel: new userModel()
     };
 
     /**

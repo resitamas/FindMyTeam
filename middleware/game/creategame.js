@@ -6,7 +6,7 @@ var requireOption = require('../requireoption').requireOption;
 
 var sports = require('../../constant/constants').sports;
 var levels = require('../../constant/constants').levels;
-var types = require('../../constant/constants').types;
+var visibilities = require('../../constant/constants').types;
 
 /**
  * Create game
@@ -24,15 +24,38 @@ module.exports = function (objectrepository) {
         req.checkBody("maxplayers",'Add max player').isInt();
         req.checkBody("location",'Add location').notEmpty();
         req.checkBody("description",'Enter description').notEmpty();
-        req.checkBody("type",'Enter type').isOneOfThem(types);
-        req.checkBody("players",'Players should be an array').isArray();
-        req.checkBody("invited",'Invited should be an array').isArray();
-        req.checkBody("requested",'Requested should be an array').isArray();
+        req.checkBody("type",'Enter type').isOneOfThem(visibilities);
+        req.checkBody("playerids",'Players should be an array').isArray();
+        req.checkBody("invitedids",'Invited should be an array').isArray();
+        req.checkBody("requestedids",'Requested should be an array').isArray();
 
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
-                console.log(result.array());
+
+                res.tpl.game = {
+                    organizer: req.session.userid,
+                    sport: '',
+                    date: '',
+                    time: '',
+                    level : '',
+                    description: '',
+                    maxplayers: '',
+                    location: '',
+                    visibility: "",
+                    players: [],
+                    invited: [],
+                    requested: []
+                };
+
+                res.tpl.visibilities = visibilities;
+                res.tpl.sports = sports;
+                res.tpl.levels = levels;
+
+                res.tpl.playerslabel = "Players (0)";
+                res.tpl.invitedlabel = "Invites (0)";
+                res.tpl.requestedlabel = "Requests (0)";
+
                 return next();
             }
 
@@ -54,9 +77,9 @@ module.exports = function (objectrepository) {
         game.location = req.body.location;
         game.description = req.body.description;
         game.type = req.body.type;
-        game.players = req.body.players;
-        game.invited = req.body.invited;
-        game.requested = req.body.requested;
+        game.players = req.body.playersids;
+        game.invited = req.body.invitedids;
+        game.requested = req.body.requestedids;
 
         gameModel.save(game);
 

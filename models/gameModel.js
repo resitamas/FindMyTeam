@@ -16,16 +16,16 @@ var GameInstanceMock = {
     id: 1,
     organizer: 1,
     sport: 'Football',
-    date: '2017.04.04.',
+    date: '2017-04-04',
     time: '10:20',
-    level : 'beginner',
+    level : 'Beginner',
     description: 'Come Come Come',
     maxplayers: 10,
     location: 'Budapest, 1111, Valahol utca 1',
-    type: "public",
-    players: [],
-    invited: [1,1],
-    requested: []
+    visibility: "Public",
+    players: [1,2,3,4],
+    invited: [],
+    requested: [1]
 };
 
 /**

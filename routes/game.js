@@ -16,13 +16,15 @@ var checkGameVisibilityMW = require('../middleware/game/checkgamevisibility');
 var checkGamesVisibilityMW = require('../middleware/game/checkgamevisibilities');
 
 var gameModel = require('../models/gameModel');
+var userModel = require('../models/userModel');
 
 var path = require("path");
 
 module.exports = function  (app) {
 
     var objectRepository = {
-        gameModel: new gameModel()
+        gameModel: new gameModel(),
+        userModel: new userModel()
     };
 
     /**
@@ -49,7 +51,7 @@ module.exports = function  (app) {
      */
     app.use('/games/edit/:id',
         authMW(objectRepository),
-        getGameMW(objectRepository),
+        getGameMW(objectRepository, false),
         checkEditGame(objectRepository),
         updateGameMW(objectRepository),
         renderEJSMW(objectRepository,"create.ejs")
@@ -69,7 +71,7 @@ module.exports = function  (app) {
      * Delete game
      */
     app.post('/games/delete',
-        getGameMW(objectRepository),
+        getGameMW(objectRepository, false),
         checkEditGame(objectRepository),
         deleteGameMW(objectRepository)
     );
@@ -79,7 +81,7 @@ module.exports = function  (app) {
      */
     app.get('/games/:id',
         authMW(objectRepository),
-        getGameMW(objectRepository),
+        getGameMW(objectRepository, true),
         checkGameVisibilityMW(objectRepository),
         renderEJSMW(objectRepository,"game.ejs")
     );

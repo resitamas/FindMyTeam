@@ -1,0 +1,16 @@
+<li class="collection-header">
+    <h5 id="header"><%= label %></h5>
+</li>
+<% model.forEach(function (row) { %>
+<li class="collection-item avatar hoverable" data-userid="<%= row.id %>">
+    <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+    <span class="title"><%= row.name %></span>
+    <div class="secondary-content">
+        <% if (withAddOption) {%>
+            <i class="material-icons" onclick="addFromRequests(this)">add</i>
+        <%}%>
+        <i class="material-icons" onclick="remove(this, '<%= type %>')">remove</i>
+        <i class="material-icons" onclick="showUserInfo()">info</i>
+    </div>
+</li>
+<% }); %>
