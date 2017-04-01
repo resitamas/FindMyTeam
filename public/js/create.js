@@ -61,6 +61,20 @@ $(function(){
         }
     });
 
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(48.56,15.53),
+        new google.maps.LatLng(49,23.3),
+        new google.maps.LatLng(45.6,15.5),
+        new google.maps.LatLng(46.3,23.53)
+    )
+
+    var locationOptions = {
+        bounds: defaultBounds
+    };
+
+    var locationInput = document.getElementById('pac-input');
+    var autocomplete = new google.maps.places.Autocomplete(locationInput, locationOptions);
+
 })
 
 function showUserInfo() {

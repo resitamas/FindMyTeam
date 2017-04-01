@@ -21,7 +21,7 @@ var GameInstanceMock = {
     level : 'Beginner',
     description: 'Come Come Come',
     maxplayers: 10,
-    location: 'Budapest, 1111, Valahol utca 1',
+    location: 'Budapest, Magyar tudósok körútja 2, Hungary',
     visibility: "Public",
     players: [1,2,3,4],
     invited: [],

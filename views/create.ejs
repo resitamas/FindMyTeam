@@ -15,6 +15,7 @@
     <script type="text/javascript" src="/public/js/materialize.clockpicker.js"></script>
     <script type="text/javascript" src="/public/js/jquery.materialize-autocomplete.min.js"></script>
     <script type="text/javascript" src="/public/js/create.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnMvBIZTjgHPh0cgzQjXjevZ46RMccfMw&libraries=places"></script>
     <title>Create Game</title>
 </head>
 <body>
@@ -52,8 +53,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="location" type="text" class="validate" name="location" value="<%= game.location %>">
-                    <label for="location">Location</label>
+                    <input id="pac-input" class="controls" type="text" placeholder="Location..." value="<%= game.location %>"/>
                 </div>
             </div>
             <div class="row">
