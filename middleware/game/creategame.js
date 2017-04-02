@@ -26,8 +26,8 @@ module.exports = function (objectrepository) {
         req.checkBody("description",'Enter description').notEmpty();
         req.checkBody("type",'Enter type').isOneOfThem(visibilities);
         req.checkBody("playerids",'Players should be an array').isArray();
-        req.checkBody("invitedids",'Invited should be an array').isArray();
-        req.checkBody("requestedids",'Requested should be an array').isArray();
+        req.checkBody("inviteids",'Invited should be an array').isArray();
+        req.checkBody("requestids",'Requested should be an array').isArray();
 
         req.getValidationResult().then(function(result) {
 
@@ -43,22 +43,23 @@ module.exports = function (objectrepository) {
                     maxplayers: '',
                     location: '',
                     visibility: "",
+                    playerids: [],
+                    inviteids: [],
+                    requestids: [],
                     players: [],
-                    invited: [],
-                    requested: []
+                    invites: [],
+                    requests: []
                 };
 
                 res.tpl.visibilities = visibilities;
                 res.tpl.sports = sports;
                 res.tpl.levels = levels;
 
-                res.tpl.playerids = JSON.stringify([]);
-                res.tpl.invitedids = JSON.stringify([]);
-                res.tpl.requestsids = JSON.stringify([]);
-
                 res.tpl.playerslabel = "Players (0)";
                 res.tpl.invitedlabel = "Invites (0)";
                 res.tpl.requestedlabel = "Requests (0)";
+
+                res.tpl.isCreate = true;
 
                 return next();
             }
@@ -81,9 +82,9 @@ module.exports = function (objectrepository) {
         game.location = req.body.location;
         game.description = req.body.description;
         game.type = req.body.type;
-        game.players = req.body.playersids;
-        game.invited = req.body.invitedids;
-        game.requested = req.body.requestedids;
+        game.playerids = req.body.playerids;
+        game.inviteids = req.body.inviteids;
+        game.requestids = req.body.requestids;
 
         gameModel.save(game);
 

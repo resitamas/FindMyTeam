@@ -25,7 +25,7 @@ module.exports = function (app) {
         authMW(objectRepository),
         getGameMW(objectRepository),
         checkRequestMW(objectRepository),
-        changeStatusWithGameMW(objectRepository,undefined,"requested")
+        changeStatusWithGameMW(objectRepository,undefined,"requestids")
     );
 
     /**
@@ -34,8 +34,8 @@ module.exports = function (app) {
     app.post('/play',
         authMW(objectRepository),
         getGameMW(objectRepository),
-        checkGame(objectRepository,["invited"]),
-        changeStatusWithGameMW(objectRepository,["invited"],"players")
+        checkGame(objectRepository,["inviteids"]),
+        changeStatusWithGameMW(objectRepository,["inviteids"],"playerids")
     );
 
     /**
@@ -44,8 +44,8 @@ module.exports = function (app) {
     app.post('/notplay',
         authMW(objectRepository),
         getGameMW(objectRepository),
-        checkGame(objectRepository,["players"]),
-        changeStatusWithGameMW(objectRepository,["players"], "invited")
+        checkGame(objectRepository,["playerids"]),
+        changeStatusWithGameMW(objectRepository,["playerids"], "inviteids")
     );
 
     /**
@@ -54,8 +54,8 @@ module.exports = function (app) {
     app.post('/refuse',
         authMW(objectRepository),
         getGameMW(objectRepository),
-        checkGame(objectRepository,["invited","requested"]),
-        changeStatusWithGameMW(objectRepository, ["invited", "requested"])
+        checkGame(objectRepository,["inviteids","requestids"]),
+        changeStatusWithGameMW(objectRepository, ["inviteids", "requestids"])
     );
 
 };

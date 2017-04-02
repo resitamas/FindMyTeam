@@ -33,7 +33,7 @@ module.exports = function (objectrepository) {
         req.checkBody("type",'Enter type').isOneOfThem(types);
         req.checkBody("participants",'Players should be an array').isArray();
         req.checkBody("invited",'Invited should be an array').isArray();
-        req.checkBody("requested",'Requested should be an array').isArray();
+        req.checkBody("requests",'Requested should be an array').isArray();
 
         req.getValidationResult().then(function(result) {
 
@@ -65,7 +65,7 @@ module.exports = function (objectrepository) {
             game.type = req.body.type;
             result.players = req.body.players;
             result.invited = req.body.invited;
-            result.requested = req.body.requested;
+            result.requests = req.body.requests;
 
             gameModel.save(result);
 

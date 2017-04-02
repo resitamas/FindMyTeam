@@ -43,9 +43,10 @@ module.exports = function (objectrepository) {
             if (result) {
                 req.session.userid = result.id;
                 res.redirect('/');
+            } else {
+                return next();
             }
 
-            return next();
         })
     }
 };

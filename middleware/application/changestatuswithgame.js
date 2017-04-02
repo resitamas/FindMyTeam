@@ -30,7 +30,7 @@ module.exports = function (objectrepository, from, to) {
                 }
             }
 
-            if (to != undefined) {
+            if (to != undefined && !(req.session.userid == result.organizer && from == 'playerids') ) {
                 result[to].push(req.session.userid);
             }
 

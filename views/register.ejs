@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Find My Team | Register</title>
     <meta charset="UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="/public/js/materialize.min.js"></script>
-    <title>Register</title>
     <script type="text/javascript" src="/public/js/register.js"></script>
 </head>
 <body>
@@ -44,21 +44,10 @@
                 <div class="col s3">
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="sex">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="men">Men</option>
-                                <option value="women">Women</option>
-                            </select>
-                            <label>Sex</label>
+                            <%- include('select', {model: sexes, label: "Sex", choosed: ""}) %>
                         </div>
                         <div class="input-field col s12">
-                            <select name="birthyear">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="1993">1993</option>
-                                <option value="1994">1994</option>
-                                <option value="1995">1995</option>
-                            </select>
-                            <label>Birthyear</label>
+                            <%- include('select', {model: years, label: "Birth Year", choosed: ""}) %>
                         </div>
                     </div>
                 </div>
@@ -72,18 +61,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s2">
-                    <input type="checkbox" id="test1" name="sports[]" value="Football"/>
-                    <label for="test1">Football</label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" id="test2" name="sports[]" value="Ice Hockey"/>
-                    <label for="test2">Ice Hockey</label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" id="test3" name="sports[]" value="Basketball"/>
-                    <label for="test3">Basketball</label>
-                </div>
+                <% sports.forEach(function (row) { %>
+                    <div class="col s2">
+                        <input type="checkbox" id="<%= row %>" name="sports[]" value="<%= row %>"/>
+                        <label for="<%= row %>"><%= row %></label>
+                    </div>
+                <% }); %>
             </div>
             <div class="row">
                 <button class="btn-large waves-effect waves-light" type="submit" name="action">Register

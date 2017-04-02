@@ -20,8 +20,8 @@ module.exports = function (objectrepository) {
 
         if (game.type == "private") {
             if (game.organizer != userid) {
-                if (game.players.indexOf(userid) == -1) {
-                    if (game.invited.indexOf(userId) == -1) {
+                if (game.playerids.indexOf(userid) == -1) {
+                    if (game.inviteids.indexOf(userId) == -1) {
                         return next(new Error('Not allowed!'))
                     }
                 }

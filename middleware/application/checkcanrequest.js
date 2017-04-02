@@ -16,7 +16,7 @@ module.exports = function (objectrepository) {
         var game = res.tpl.game;
         var userid = req.session.userid;
 
-        if (game.organizer == userid || chechInArray(game.requested,userid) || chechInArray(game.invited, userid) || chechInArray(game.players, userid) || game.type == "private") {
+        if (game.organizer == userid || chechInArray(game.requestids, userid) || chechInArray(game.inviteids, userid) || chechInArray(game.playerids, userid) || game.type == "private") {
             return next(new Error('Not allowed!'))
         }
 

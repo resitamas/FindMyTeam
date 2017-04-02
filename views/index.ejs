@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Find My Team | Index</title>
     <meta charset="UTF-8">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/public/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/public/css/style.css"  media="screen,projection"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/public/js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="/public/js/materialize.min.js"></script>
     <script type="text/javascript" src="/public/js/index.js"></script>
-    <title>Index</title>
 </head>
 <body>
 
@@ -38,15 +38,15 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs tabs-fixed-width">
-                <li class="tab col s3"><a class="active" href="#games1">Games participated (<%= participated.length %>)</a></li>
-                <li class="tab col s3"><a href="#games2">Games invited (<%= invited.length %>)</a></li>
-                <li class="tab col s3 disabled"><a href="#games3">Games requested (<%= requested.length %>)</a></li>
-                <li class="tab col s3"><a href="#games4">Games organized (<%= organized.length %>)</a></li>
+                <li class="tab col s3 <%= participates.length != 0 ? "" : "disabled"%>"><a class="active" href="#games1">Games participated (<%= participates.length %>)</a></li>
+                <li class="tab col s3 <%= invites.length != 0 ? "" : "disabled"%>"><a href="#games2">Games invited (<%= invites.length %>)</a></li>
+                <li class="tab col s3 <%= requests.length != 0 ? "" : "disabled"%>"><a href="#games3">Games requested (<%= requests.length %>)</a></li>
+                <li class="tab col s3 <%= organized.length != 0 ? "" : "disabled"%>"><a href="#games4">Games organized (<%= organized.length %>)</a></li>
             </ul>
         </div>
         <div id="games1">
             <div class="row">
-                <% participated.forEach(function (game) { %>
+                <% participates.forEach(function (game) { %>
                     <div class="col s4">
                         <%- include('gameTile', {game: game} ) %>
                     </div>
@@ -64,7 +64,7 @@
         </div>
         <div id="games2">
             <div class="row">
-                <% invited.forEach(function (game) { %>
+                <% invites.forEach(function (game) { %>
                 <div class="col s4">
                     <%- include('gameTile', {game: game} ) %>
                 </div>
@@ -82,7 +82,7 @@
         </div>
         <div id="games3">
             <div class="row">
-                <% requested.forEach(function (game) { %>
+                <% requests.forEach(function (game) { %>
                 <div class="col s4">
                     <%- include('gameTile', {game: game} ) %>
                 </div>

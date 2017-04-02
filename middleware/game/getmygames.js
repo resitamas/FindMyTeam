@@ -49,9 +49,9 @@ module.exports = function (objectrepository) {
                 return next(err);
             }
 
-            res.tpl.participated = result.participated;
-            res.tpl.invited = result.invited;
-            res.tpl.requested = result.requested;
+            res.tpl.participates = result.participates;
+            res.tpl.invites = result.invites;
+            res.tpl.requests = result.requests;
             res.tpl.organized = result.organized;
             res.tpl.from = from;
             res.tpl.to = to;

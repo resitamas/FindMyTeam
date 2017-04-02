@@ -49,7 +49,7 @@ module.exports = function (objectrepository, onlyPlayers) {
             var players = [];
 
             async.each(
-                result.players,
+                result.playerids,
                 function (item, callback) {
                     userModel.findOne({id: item}, function (err, playerResult) {
 
@@ -89,13 +89,13 @@ module.exports = function (objectrepository, onlyPlayers) {
             async.parallel(
                 {
                     players: function (callback) {
-                        findPlayers(result["players"],callback);
+                        findPlayers(result["playerids"],callback);
                     },
-                    invited: function (callback) {
-                        findPlayers(result["invited"],callback);
+                    invites: function (callback) {
+                        findPlayers(result["inviteids"],callback);
                     },
                     requests: function (callback) {
-                        findPlayers(result["requested"],callback);
+                        findPlayers(result["requestids"],callback);
                     }
                 }
             , function (err, results) {
@@ -104,23 +104,21 @@ module.exports = function (objectrepository, onlyPlayers) {
                     return next(err);
                 }
 
-                result.playerids = JSON.stringify(result.players);
-                result.invitedids = JSON.stringify(result.invited);
-                result.requestsids = JSON.stringify(result.requested);
-
                 result.players = results.players;
-                result.invited = results.invited;
-                result.request = results.requests;
+                result.invites = results.invites;
+                result.requests = results.requests;
 
                 res.tpl.playerslabel = "Players (" + result.players.length + ")";
-                res.tpl.invitedlabel = "Invites (" + result.invited.length + ")";
-                res.tpl.requestedlabel = "Requests (" + result.requested.length + ")";
+                res.tpl.invitedlabel = "Invites (" + result.invites.length + ")";
+                res.tpl.requestedlabel = "Requests (" + result.requests.length + ")";
 
                 res.tpl.game = result;
 
                 res.tpl.visibilities = visibilities;
                 res.tpl.sports = sports;
                 res.tpl.levels = levels;
+
+                res.tpl.isCreate = false;
 
                 return next();
             });
@@ -169,21 +167,21 @@ module.exports = function (objectrepository, onlyPlayers) {
         if (id == game.organizer) {
             res.tpl.editbutton = true;
 
-            if (game.players.indexOf(id) != -1) {
+            if (game.playerids.indexOf(id) != -1) {
                 res.tpl.notplaybutton = true;
             } else {
                 res.tpl.playbutton = true;
             }
 
         } else {
-            if (game.players.indexOf(id) != -1) {
+            if (game.playerids.indexOf(id) != -1) {
                 res.tpl.notplaybutton = true;
             } else {
-                if (game.invited.indexOf(id) != -1) {
+                if (game.inviteids.indexOf(id) != -1) {
                     res.tpl.refusebutton = true;
                     res.tpl.playbutton = true;
                 } else {
-                    if (game.requested.indexOf(id) != -1) {
+                    if (game.requestids.indexOf(id) != -1) {
                         res.tpl.requestbutton = true;
                     }
                 }

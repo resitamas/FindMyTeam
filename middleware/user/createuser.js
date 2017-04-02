@@ -5,6 +5,7 @@
 var requireOption = require('../requireoption').requireOption;
 var sexes = require('../../constant/constants').sexes;
 var years = require('../../constant/constants').years;
+var sports = require('../../constant/constants').sports;
 
 /**
  * Create user
@@ -27,6 +28,9 @@ module.exports = function (objectrepository) {
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
+                res.tpl.sexes = sexes;
+                res.tpl.years = years();
+                res.tpl.sports = sports;
                 return next();
             }
 

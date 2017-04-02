@@ -23,9 +23,9 @@ var GameInstanceMock = {
     maxplayers: 10,
     location: 'Budapest, Magyar tudósok körútja 2, Hungary',
     visibility: "Public",
-    players: [1,2,3,4],
-    invited: [],
-    requested: [1]
+    playerids: [2,3,4],
+    inviteids: [],
+    requestids: []
 };
 
 /**
@@ -50,9 +50,9 @@ Game.prototype.myGames = function (criteria, cb) {
 
     var games = {
         organized: [GameInstanceMock],
-        participated: [GameInstanceMock, GameInstanceMock, GameInstanceMock],
-        requested: [GameInstanceMock],
-        invited: [GameInstanceMock]
+        participates: [GameInstanceMock, GameInstanceMock, GameInstanceMock],
+        requests: [GameInstanceMock],
+        invites: [GameInstanceMock]
     };
 
     return cb(null,games);
