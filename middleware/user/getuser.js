@@ -33,7 +33,7 @@ module.exports = function (objectrepository) {
     
     function doWork(req, res, next) {
 
-        userModel.findOne({id : req.param.id}, function (err, result) {
+        userModel.findOne({_id : req.param.id}, function (err, result) {
 
             if (err) {
                 return next(err);

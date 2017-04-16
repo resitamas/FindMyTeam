@@ -22,6 +22,7 @@ module.exports = function (objectrepository) {
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
+                console.log(result.array());
                 return next();
             }
 
@@ -34,12 +35,12 @@ module.exports = function (objectrepository) {
 
         var userModel = requireOption(objectrepository , 'userModel');
 
-        userModel.findOne({name : req.body.username, pass: req.body.password}, function (err, result) {
+        userModel.findOne({name : req.body.username, password: req.body.password}, function (err, result) {
 
             if (err) {
                 return next(err);
             }
-
+            console.log(result);
             if (result) {
                 req.session.userid = result.id;
                 res.redirect('/');

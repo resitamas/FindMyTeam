@@ -8,14 +8,14 @@ var changeStatusWithGameMW = require('../middleware/application/changestatuswith
 var checkGame = require('../middleware/authorization/checkgame');
 var checkRequestMW = require('../middleware/application/checkcanrequest');
 
-var gameModel = require('../models/gameModel');
-var userModel = require('../models/userModel');
+var gameModel = require('../models/game');
+var userModel = require('../models/user');
 
 module.exports = function (app) {
 
     var objectRepository = {
-        gameModel: new gameModel(),
-        userModel: new userModel()
+        gameModel: gameModel,
+        userModel: userModel
     };
 
     /**

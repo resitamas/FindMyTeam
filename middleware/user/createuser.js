@@ -21,7 +21,7 @@ module.exports = function (objectrepository) {
         req.checkBody("password",'Enter password').notEmpty();
         req.checkBody("confirm",'Enter confirmation').notEmpty();
         req.checkBody("sex",'Choose sex').isOneOfThem(sexes);
-        req.checkBody("birthyear").isOneOfThem(years());
+        req.checkBody("birth year").isOneOfThem(years());
         req.checkBody("description").notEmpty();
         req.checkBody("sports",'Sports should be array').isArray();
 
@@ -61,11 +61,20 @@ module.exports = function (objectrepository) {
             user.birthyear = req.body.year;
             user.description = req.body.description;
             user.sports = req.body.sports;
+            user.password = req.body.password;
 
-            userModel.save(user);
+            //userModel.save(user);
+            user.save(function (err, result) {
 
-            req.session.userid = 1;
-            res.redirect('/');
+                if (err) {
+                    return next(err);
+                }
+
+                req.session.userid = result._id;
+                res.redirect('/');
+
+            })
+
         });
 
     }

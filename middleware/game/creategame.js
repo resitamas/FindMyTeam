@@ -86,9 +86,17 @@ module.exports = function (objectrepository) {
         game.inviteids = req.body.inviteids;
         game.requestids = req.body.requestids;
 
-        gameModel.save(game);
+        //gameModel.save(game);
+        game.svae(function (err, result) {
 
-        res.redirect("/games/"+result.id);
+            if (err) {
+                return next(err);
+            }
+
+            res.redirect("/games/"+result.id);
+
+
+        })
 
     }
 

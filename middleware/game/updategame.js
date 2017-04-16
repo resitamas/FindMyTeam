@@ -49,7 +49,7 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        gameModel.findOne({id : req.param.id}, function (err, result) {
+        gameModel.findOne({_id : req.param.id}, function (err, result) {
 
             if (err) {
                 return next(err);
@@ -67,11 +67,20 @@ module.exports = function (objectrepository) {
             result.invited = req.body.invited;
             result.requests = req.body.requests;
 
-            gameModel.save(result);
+            //gameModel.save(result);
 
-            res.tpl.game = result;
+            result.save(function (err) {
 
-            res.redirect("/games/"+result.id);
+                if (err) {
+                    return next(err);
+                }
+
+                res.tpl.game = result;
+
+                res.redirect("/games/"+result.id);
+
+            })
+
         });
 
     }

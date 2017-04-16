@@ -12,12 +12,12 @@ var editUserMW = require('../middleware/user/edituser');
 
 var path = require("path");
 
-var userModel = require('../models/userModel');
+var userModel = require('../models/user');
 
 module.exports = function  (app) {
 
     var objectRepository = {
-        userModel: new userModel()
+        userModel: userModel
     };
 
     /**

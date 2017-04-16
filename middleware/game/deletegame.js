@@ -30,14 +30,23 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        gameModel.delete(req.body.id, function (err, id) {
+        // gameModel.delete(req.body.id, function (err, id) {
+        //
+        //     if (err) {
+        //         return next();
+        //     }
+        //
+        //     res.redirect("/");
+        // });
 
-            if (err) {
-                return next();
-            }
+        gameModel.remove({_id: req.body.id}, function (err) {
+                if (err) {
+                    return next();
+                }
 
-            res.redirect("/");
-        });
+                res.redirect("/");
+        })
+
     }
 
 };

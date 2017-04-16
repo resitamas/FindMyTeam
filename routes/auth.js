@@ -8,14 +8,14 @@ var createUserMW = require('../middleware/user/createuser');
 var loginMW = require('../middleware/authentication/login');
 var logoutMW = require('../middleware/authentication/logout');
 
-var userModel = require('../models/userModel');
+var userModel = require('../models/user');
 
 var path = require("path");
 
 module.exports = function (app) {
 
     var objectRepository = {
-        userModel: new userModel()
+        userModel: userModel
     };
 
     /**

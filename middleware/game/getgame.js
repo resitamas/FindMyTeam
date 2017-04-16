@@ -132,7 +132,7 @@ module.exports = function (objectrepository, onlyPlayers) {
         async.each(
             arr,
             function (item, callback) {
-                userModel.findOne({id: item}, function (err, playerResult) {
+                userModel.findOne({_id: item}, function (err, playerResult) {
 
                     if (err) {
                         return next(err);

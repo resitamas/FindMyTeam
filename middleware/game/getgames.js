@@ -25,7 +25,7 @@ module.exports = function (objectrepository) {
         criteria = addCriteria(criteria,req,"city");
         criteria = addCriteria(criteria,req,"level");
 
-        gameModel.findGames(criteria, function (err, games) {
+        gameModel.find(criteria, function (err, games) {
 
             if (err) {
                 return next(err);

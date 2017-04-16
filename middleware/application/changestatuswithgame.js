@@ -34,11 +34,16 @@ module.exports = function (objectrepository, from, to) {
                 result[to].push(req.session.userid);
             }
 
-            gameModel.save(result);
+            //gameModel.save(result);
 
-            res.tpl.game = result;
+            result.save(function (err) {
 
-            res.redirect("/games/"+result.id);
+                res.tpl.game = result;
+
+                res.redirect("/games/"+result.id);
+
+            })
+
 
         });
 

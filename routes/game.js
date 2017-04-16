@@ -15,16 +15,16 @@ var checkEditGame = require('../middleware/authorization/checkeditgame');
 var checkGameVisibilityMW = require('../middleware/game/checkgamevisibility');
 var checkGamesVisibilityMW = require('../middleware/game/checkgamevisibilities');
 
-var gameModel = require('../models/gameModel');
-var userModel = require('../models/userModel');
+var gameModel = require('../models/game');
+var userModel = require('../models/user');
 
 var path = require("path");
 
 module.exports = function  (app) {
 
     var objectRepository = {
-        gameModel: new gameModel(),
-        userModel: new userModel()
+        gameModel: gameModel,
+        userModel: userModel
     };
 
     /**
