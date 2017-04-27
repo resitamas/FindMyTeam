@@ -7,13 +7,13 @@ var db = require('../config/db');
 
 var gameSchema = new Schema(
     {
-        _organizer: {
+        organizer: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
         sport: String,
-        date: Date,
-        time: Date,
+        date: String,
+        time: String,
         level: String,
         description: String,
         maxplayers: Number,
@@ -34,17 +34,17 @@ var gameSchema = new Schema(
     }
 )
 
-gameSchema.statics.myGames = function (criteria, cb) {
-
-    var games = {
-        organized: [],
-        participates: [],
-        requests: [],
-        invites: []
-    };
-
-    cb(null, games)
-}
+// gameSchema.statics.myGames = function (criteria, cb) {
+//
+//     var games = {
+//         organized: [],
+//         participates: [],
+//         requests: [],
+//         invites: []
+//     };
+//
+//     cb(null, games)
+// }
 
 var Game = db.model('Game', gameSchema);
 

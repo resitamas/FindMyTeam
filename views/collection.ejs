@@ -2,7 +2,7 @@
     <h5><%= label %></h5>
 </li>
 <% model.forEach(function (row) { %>
-    <a href="/users/1" target="_blank" class="collection-item avatar">
+    <a href="/users/<%=row._id %>" target="_blank" class="collection-item avatar">
         <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
         <span class="title black-text"><%= row.name %></span>
     </a>

@@ -16,7 +16,7 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
 
-        req.checkParams("id",'Add id').isInt();
+        req.checkParams("id",'Add id').notEmpty();
 
         req.getValidationResult().then(function(result) {
 
@@ -33,7 +33,7 @@ module.exports = function (objectrepository) {
     
     function doWork(req, res, next) {
 
-        userModel.findOne({_id : req.param.id}, function (err, result) {
+        userModel.findOne({_id : req.params.id}, function (err, result) {
 
             if (err) {
                 return next(err);
@@ -44,6 +44,8 @@ module.exports = function (objectrepository) {
             res.tpl.sports = sports;
             res.tpl.years = years();
             res.tpl.sexes = sexes;
+
+            res.tpl.userid = req.params.id;
 
             return next();
         })

@@ -58,10 +58,12 @@ module.exports = function (objectrepository) {
             user.email = req.body.email;
             user.pass = req.body.password;
             user.sex = req.body.sex;
-            user.birthyear = req.body.year;
+            user.birthyear = req.body["birth year"];
             user.description = req.body.description;
             user.sports = req.body.sports;
             user.password = req.body.password;
+
+            console.log(user);
 
             //userModel.save(user);
             user.save(function (err, result) {

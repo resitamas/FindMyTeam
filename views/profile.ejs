@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<%- include('navbarLoggedIn') %>
+<%- include('navbarLoggedIn', userid) %>
 
 <div class="container">
     <div class="row">
@@ -21,7 +21,7 @@
             <img src="https://avatars.githubusercontent.com/u/17765383" alt="" class="circle center">
         </div>
         <div class="col s3">
-            <a href="/users/edit/1">
+            <a href="/users/edit/<%= userid %>">
                 <button  class="btn waves-effect waves-light right" type="submit">Edit</button>
             </a>
         </div>

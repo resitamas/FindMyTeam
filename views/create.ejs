@@ -18,13 +18,13 @@
 </head>
 <body>
 
-<%- include('navbarLoggedIn') %>
+<%- include('navbarLoggedIn', userid) %>
 
 <div class="container">
     <div class="row">
         <form class="col s12" method="post" action="/games/new" id="createForm">
             <input id="participants" type="hidden" name="playerids" value="<%= '[' + game.playerids + ']' %>"/>
-            <input id="invites" type="hidden" name="invitesids" value="<%= '[' + game.inviteids + ']' %> "/>
+            <input id="invites" type="hidden" name="inviteids" value="<%= '[' + game.inviteids + ']' %> "/>
             <input id="requests" type="hidden" name="requestids" value="<%= '[' + game.requestids + ']' %>"/>
             <div class="row">
                 <div class="input-field col s2">
@@ -42,7 +42,7 @@
                     <%- include('select', {model: visibilities, label: "Visibility", choosed: game.visibility}) %>
                 </div>
                 <div class="input-field col s1">
-                    <input id="players" type="text" class="validate" name="playercount" value="<%= game.maxplayers %>">
+                    <input id="players" type="text" class="validate" name="maxplayers" value="<%= game.maxplayers %>">
                     <label for="players">Players</label>
                 </div>
                 <div class="input-field col s2">
@@ -51,7 +51,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="pac-input" class="controls" type="text" placeholder="Location..." value="<%= game.location %>"/>
+                    <input id="pac-input" class="controls" type="text" name="location" placeholder="Location..." value="<%= game.location %>"/>
                 </div>
             </div>
             <div class="row">
@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="row">
-        <button class="btn waves-effect waves-light input-field" type="submit" name="action" form="createForm">Create
+        <button class="btn waves-effect waves-light input-field" form="createForm">Create
             <i class="material-icons right">send</i>
         </button>
         <form action="/games/delete" method="post" class="right">

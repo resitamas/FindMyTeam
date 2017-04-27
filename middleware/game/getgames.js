@@ -45,8 +45,6 @@ module.exports = function (objectrepository) {
 
         if (req.query[key] != undefined && req.query[key] != "") {
             cr[key] = req.query[key];
-        } else {
-            cr[key] = '';
         }
 
         return cr;

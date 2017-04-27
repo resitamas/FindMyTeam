@@ -24,10 +24,10 @@ module.exports = function (objectrepository) {
         req.checkBody("maxplayers",'Add max player').isInt();
         req.checkBody("location",'Add location').notEmpty();
         req.checkBody("description",'Enter description').notEmpty();
-        req.checkBody("type",'Enter type').isOneOfThem(visibilities);
-        req.checkBody("playerids",'Players should be an array').isArray();
-        req.checkBody("inviteids",'Invited should be an array').isArray();
-        req.checkBody("requestids",'Requested should be an array').isArray();
+        //req.checkBody("visibility",'Enter visibility').isOneOfThem(visibilities);
+        //req.checkBody("playerids",'Players should be an array').isArray();
+        //req.checkBody("inviteids",'Invited should be an array').isArray();
+        //req.checkBody("requestids",'Requested should be an array').isArray();
 
         req.getValidationResult().then(function(result) {
 
@@ -74,6 +74,7 @@ module.exports = function (objectrepository) {
 
         var game = new gameModel();
 
+        game.organizer = req.session.userid;
         game.sport = req.body.sport;
         game.date = req.body.date;
         game.time = req.body.time;
@@ -82,19 +83,17 @@ module.exports = function (objectrepository) {
         game.location = req.body.location;
         game.description = req.body.description;
         game.type = req.body.type;
-        game.playerids = req.body.playerids;
-        game.inviteids = req.body.inviteids;
-        game.requestids = req.body.requestids;
+        // game.playerids = req.body.playerids;
+        // game.inviteids = req.body.inviteids;
+        // game.requestids = req.body.requestids;
 
-        //gameModel.save(game);
-        game.svae(function (err, result) {
+        game.save(function (err, result) {
 
             if (err) {
                 return next(err);
             }
 
-            res.redirect("/games/"+result.id);
-
+            res.redirect("/games/"+result._id);
 
         })
 

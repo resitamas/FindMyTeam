@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<%- include('navbarLoggedIn') %>
+<%- include('navbarLoggedIn', userid) %>
 
 <div class="container">
     <div class="row">
@@ -24,30 +24,30 @@
                 <div class="col s12">
                     <% if (playbutton) { %>
                         <form action="/play" method="post" style="float: left">
-                            <input type="hidden" name="id" value="1"/>
+                            <input type="hidden" name="id" value="<%=game._id %>"/>
                             <button  class="btn waves-effect waves-light" type="submit">Play</button>
                         </form>
                     <%}%>
                     <% if (notplaybutton) { %>
                         <form action="/notplay" method="post" style="float: left; margin-left: 5px">
-                            <input type="hidden" name="id" value="1"/>
+                            <input type="hidden" name="id" value="<%=game._id %>"/>
                             <button  class="btn waves-effect waves-light red" type="submit">Not play</button>
                         </form>
                     <%}%>
                     <% if (requestbutton) { %>
                         <form action="/request" method="post" style="float: left; margin-left: 5px">
-                            <input type="hidden" name="id" value="1"/>
+                            <input type="hidden" name="id" value="<%=game._id %>"/>
                             <button  class="btn waves-effect waves-light purple" type="submit">Request</button>
                         </form>
                     <%}%>
                     <% if (editbutton) { %>
-                    <a href="/games/edit/1">
+                    <a href="/games/edit/<%=game._id %>">
                         <button  class="btn waves-effect waves-light inline brown right" type="button">Edit</button>
                     </a>
                     <%}%>
                     <% if (refusebutton) {%>
                         <form action="/refuse" method="post" style="float: right; margin-right: 5px">
-                            <input type="hidden" name="id" value="1"/>
+                            <input type="hidden" name="id" value="<%=game._id %>"/>
                             <button  class="btn waves-effect waves-light grey" type="submit">Refuse</button>
                         </form>
                     <%}%>

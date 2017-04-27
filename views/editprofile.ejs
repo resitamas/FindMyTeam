@@ -14,11 +14,11 @@
 </head>
 <body>
 
-<%- include('navbarLoggedIn') %>
+<%- include('navbarLoggedIn', userid) %>
 
 <div class="container">
 
-    <form action="/users/edit/1" method="post">
+    <form action="/users/edit/<%=user._id %>" method="post">
         <div class="row">
             <div class="col s3 center">
                 <img src="https://avatars.githubusercontent.com/u/17765383" alt="" class="circle center">

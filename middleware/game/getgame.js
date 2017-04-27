@@ -18,7 +18,7 @@ module.exports = function (objectrepository, onlyPlayers) {
 
     return function (req, res, next) {
 
-        req.check("id",'Add id').isInt();
+        req.check("id",'Add id').notEmpty();
 
         req.getValidationResult().then(function(result) {
 
@@ -38,7 +38,7 @@ module.exports = function (objectrepository, onlyPlayers) {
 
     function getGameOnlyWithPlayers(req, res, next) {
 
-        gameModel.findOne({id : req.param.id}, function (err, result) {
+        gameModel.findOne({_id : req.params.id}, function (err, result) {
 
             if (err) {
                 return next(err);
@@ -80,7 +80,12 @@ module.exports = function (objectrepository, onlyPlayers) {
 
     function getGame(req, res, next) {
 
-        gameModel.findOne({id : req.param.id}, function (err, result) {
+        var gameId = req.params.id;
+
+        if (gameId == undefined) {
+            gameId = req.body.id;
+        }
+        gameModel.findOne({_id : gameId}, function (err, result) {
 
             if (err) {
                 return next(err);

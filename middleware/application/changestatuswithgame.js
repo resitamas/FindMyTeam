@@ -17,7 +17,7 @@ module.exports = function (objectrepository, from, to) {
             return next("Game is missing!");
         }
 
-        gameModel.findOne({id : res.tpl.game.id}, function (err, result) {
+        gameModel.findOne({_id : res.tpl.game._id}, function (err, result) {
 
             if (err) {
                 return next(err);
@@ -34,13 +34,11 @@ module.exports = function (objectrepository, from, to) {
                 result[to].push(req.session.userid);
             }
 
-            //gameModel.save(result);
-
             result.save(function (err) {
 
                 res.tpl.game = result;
 
-                res.redirect("/games/"+result.id);
+                res.redirect("/games/"+result._id);
 
             })
 
