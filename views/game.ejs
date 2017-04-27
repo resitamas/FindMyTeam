@@ -92,15 +92,18 @@
         </div>
         <div class="col s4">
             <ul class="collection with-header">
+                <% console.log("Before"); %>
+                <% console.log(game.organizer); %>
+                <% console.log("After"); %>
                 <li class="collection-header"><h5>Organizer</h5></li>
-                <a href="/users/1" target="_blank" class="collection-item avatar">
+                <a href="/users/<%= game.organizer._id %>" target="_blank" class="collection-item avatar">
                     <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
-                    <span class="title black-text">Rési Tamás</span>
+                    <span class="title black-text"><%= game.organizer.name %></span>
                     <p class="grey-text">
-                        mail@gmail.com
+                        <%= game.organizer.email %>
                     </p>
                 </a>
-                <%- include('collection', {model: game.players, label: label }) %>
+                <%- include('collection', {model: game.playerids, label: label }) %>
             </ul>
         </div>
     </div>

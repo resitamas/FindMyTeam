@@ -38,7 +38,7 @@ module.exports = function (objectrepository, onlyPlayers) {
 
     function getGameOnlyWithPlayers(req, res, next) {
 
-        gameModel.findOne({_id : req.params.id}, function (err, result) {
+        gameModel.findOne({_id : req.params.id}).populate("organizer").populate("playerids").exec(function (err, result) {
 
             if (err) {
                 return next(err);
@@ -46,36 +46,16 @@ module.exports = function (objectrepository, onlyPlayers) {
 
             res = setButtonVisibilities(req,res,result);
 
-            var players = [];
+            res.tpl.game = result;
+            res.tpl.label = "Players (" + result.maxplayers + "/" + result.playerids.length + ")";
+            res.tpl.visibilities = visibilities;
+            res.tpl.sports = sports;
+            res.tpl.levels = levels;
 
-            async.each(
-                result.playerids,
-                function (item, callback) {
-                    userModel.findOne({id: item}, function (err, playerResult) {
+            return next();
 
-                        if (err) {
-                            return next(err);
-                        }
-
-                        players.push(playerResult);
-
-                        callback();
-                    });
-                },
-                function (err) {
-
-                    result.players = players;
-
-                    res.tpl.game = result;
-                    res.tpl.label = "Players (" + result.maxplayers + "/" + result.players.length + ")";
-                    res.tpl.visibilities = visibilities;
-                    res.tpl.sports = sports;
-                    res.tpl.levels = levels;
-
-                    return next();
-                }
-            );
         });
+
     }
 
     function getGame(req, res, next) {
@@ -85,78 +65,28 @@ module.exports = function (objectrepository, onlyPlayers) {
         if (gameId == undefined) {
             gameId = req.body.id;
         }
-        gameModel.findOne({_id : gameId}, function (err, result) {
+
+        gameModel.findOne({_id : gameId}).populate("organizer").populate("playerids").populate("inviteids").populate("requestids").exec(function (err, result) {
 
             if (err) {
                 return next(err);
             }
 
-            async.parallel(
-                {
-                    players: function (callback) {
-                        findPlayers(result["playerids"],callback);
-                    },
-                    invites: function (callback) {
-                        findPlayers(result["inviteids"],callback);
-                    },
-                    requests: function (callback) {
-                        findPlayers(result["requestids"],callback);
-                    }
-                }
-            , function (err, results) {
+            res.tpl.playerslabel = "Players (" + result.playerids.length + ")";
+            res.tpl.invitedlabel = "Invites (" + result.inviteids.length + ")";
+            res.tpl.requestedlabel = "Requests (" + result.requestids.length + ")";
 
-                if (err) {
-                    return next(err);
-                }
+            res.tpl.game = result;
 
-                result.players = results.players;
-                result.invites = results.invites;
-                result.requests = results.requests;
+            res.tpl.visibilities = visibilities;
+            res.tpl.sports = sports;
+            res.tpl.levels = levels;
 
-                res.tpl.playerslabel = "Players (" + result.players.length + ")";
-                res.tpl.invitedlabel = "Invites (" + result.invites.length + ")";
-                res.tpl.requestedlabel = "Requests (" + result.requests.length + ")";
+            res.tpl.isCreate = false;
 
-                res.tpl.game = result;
+            return next();
 
-                res.tpl.visibilities = visibilities;
-                res.tpl.sports = sports;
-                res.tpl.levels = levels;
-
-                res.tpl.isCreate = false;
-
-                return next();
-            });
         });
-    }
-
-    function findPlayers(arr, cb) {
-
-        var players = [];
-
-        async.each(
-            arr,
-            function (item, callback) {
-                userModel.findOne({_id: item}, function (err, playerResult) {
-
-                    if (err) {
-                        return next(err);
-                    }
-
-                    players.push(playerResult);
-
-                    callback();
-                });
-            },
-            function (err) {
-
-                if (err) {
-                    return next(err);
-                }
-
-                cb(null, players);
-            }
-        );
     }
 
     function setButtonVisibilities(req, res, game) {
@@ -169,24 +99,24 @@ module.exports = function (objectrepository, onlyPlayers) {
 
         var id = req.session.userid;
 
-        if (id == game.organizer) {
+        if (id == game.organizer._id) {
             res.tpl.editbutton = true;
 
-            if (game.playerids.indexOf(id) != -1) {
+            if (isInArray(game.playerids,id, "_id")) {
                 res.tpl.notplaybutton = true;
             } else {
                 res.tpl.playbutton = true;
             }
 
         } else {
-            if (game.playerids.indexOf(id) != -1) {
+            if (isInArray(game.playerids,id, "_id")) {
                 res.tpl.notplaybutton = true;
             } else {
-                if (game.inviteids.indexOf(id) != -1) {
+                if (isInArray(game.inviteids,id, "_id")) {
                     res.tpl.refusebutton = true;
                     res.tpl.playbutton = true;
                 } else {
-                    if (game.requestids.indexOf(id) != -1) {
+                    if (isInArray(game.requestids,id, "_id")) {
                         res.tpl.requestbutton = true;
                     }
                 }
@@ -194,6 +124,15 @@ module.exports = function (objectrepository, onlyPlayers) {
         }
 
         return res;
+    }
+
+    function isInArray(arr, element, key) {
+
+        return arr.find(function (el) {
+
+            return el[key] == element;
+
+        }) != undefined;
     }
 
 };
