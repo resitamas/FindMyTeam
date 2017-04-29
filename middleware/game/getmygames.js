@@ -34,21 +34,27 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        var from = "";
-        var to =  "";
+        var from = "1900-01-01";
+        var to =  "2100-01-01";
 
-        if (req.query.from !== 'undefined' && req.query.from != '') {
+        var fromText = "";
+        var toText = "";
+
+
+        if (req.query.from != undefined && req.query.from != '') {
             from = req.query.from;
+            fromText = from;
         }
 
-        if (req.query.to !== 'undefined' && req.query.to != '') {
+        if (req.query.to != undefined && req.query.to != '') {
             to = req.query.to;
+            toText = to;
         }
 
         async.parallel(
             {
                 participates: function (cb) {
-                    gameModel.find({ playerids: req.session.userid}, function (err, result) {
+                    gameModel.find({ playerids: req.session.userid, date: {$gt: from, $lt: to } }, function (err, result) {
 
                         if (err) {
                             return next(err);
@@ -59,7 +65,7 @@ module.exports = function (objectrepository) {
                     });
                 },
                 invites: function (cb) {
-                    gameModel.find({ inviteids: req.session.userid}, function (err, result) {
+                    gameModel.find({ inviteids: req.session.userid, date: {$gt: from, $lt: to }}, function (err, result) {
 
                         if (err) {
                             return next(err);
@@ -70,7 +76,7 @@ module.exports = function (objectrepository) {
                     });
                 },
                 requests: function (cb) {
-                    gameModel.find({ requestids: req.session.userid}, function (err, result) {
+                    gameModel.find({ requestids: req.session.userid, date: {$gt: from, $lt: to } }, function (err, result) {
 
                         if (err) {
                             return next(err);
@@ -81,7 +87,7 @@ module.exports = function (objectrepository) {
                     });
                 },
                 organized: function (cb) {
-                    gameModel.find({ organizer: req.session.userid}, function (err, result) {
+                    gameModel.find({ organizer: req.session.userid, date: {$gt: from, $lt: to } }, function (err, result) {
 
                         if (err) {
                             return next(err);
@@ -102,30 +108,13 @@ module.exports = function (objectrepository) {
                 res.tpl.invites = results.invites;
                 res.tpl.requests = results.requests;
                 res.tpl.organized = results.organized;
-                res.tpl.from = from;
-                res.tpl.to = to;
+                res.tpl.from = fromText;
+                res.tpl.to = toText;
 
                 return next();
             }
         );
 
-        // gameModel.myGames({userid : req.session.userid, from: from, to: to}, function (err, result) {
-        //
-        //     if (err) {
-        //         return next(err);
-        //     }
-        //
-        //     res.tpl.participates = result.participates;
-        //     res.tpl.invites = result.invites;
-        //     res.tpl.requests = result.requests;
-        //     res.tpl.organized = result.organized;
-        //     res.tpl.from = from;
-        //     res.tpl.to = to;
-        //
-        //     res.tpl.userid = req.session.userid;
-        //
-        //     return next();
-        // })
     }
 
 };
