@@ -27,7 +27,10 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        userModel.findAll({name : req.param.name}, function (err, result) {
+        console.log(req.params.name);
+        console.log(req.param.name);
+
+        userModel.find({name : req.params.name}, function (err, result) {
 
             if (err) {
                 return next(err);

@@ -9,7 +9,7 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
 
-        if (req.session.userid != res.tpl.game.organizer) {
+        if (req.session.userid != res.tpl.game.organizer._id) {
             return next(new Error('Unauthorized to modify this game!'))
         }
 

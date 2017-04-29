@@ -77,8 +77,11 @@ $(function(){
 
 })
 
-function showUserInfo() {
-    window.open('/users/1','_blank');
+function showUserInfo(element) {
+
+    var parent = $(element).closest("li");
+
+    window.open('/users/' + parent.attr("data-userid"),'_blank');
 }
 
 
@@ -102,7 +105,7 @@ function removeFromPlayers(element) {
 
     changeClass(parent,"red", "green");
 
-    players = removeFrom(players,parseInt(parent.attr("data-userid")));
+    players = removeFrom(players,parent.attr("data-userid"));
 
     $("#participants").val(JSON.stringify(players));
 
@@ -114,7 +117,7 @@ function removeFromInvites(element) {
 
     changeClass(parent,"red", "green");
 
-    invites = removeFrom(invites,parseInt(parent.attr("data-userid")));
+    invites = removeFrom(invites,parent.attr("data-userid"));
 
     $("#invites").val(JSON.stringify(invites));
 
@@ -126,7 +129,7 @@ function removeFromRequests(element) {
 
     changeClass(parent,"red", "green");
 
-    requests = removeFrom(requests,parseInt(parent.attr("data-userid")));
+    requests = removeFrom(requests,parent.attr("data-userid"));
 
     $("#requests").val(JSON.stringify(requests));
 
@@ -138,7 +141,7 @@ function addFromRequests(element) {
 
     changeClass(parent,"green", "red");
 
-    requests = addTo(requests,parseInt(parent.attr("data-userid")));
+    requests = addTo(requests, parent.attr("data-userid"));
 
     $("#requests").val(JSON.stringify(requests));
 

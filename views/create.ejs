@@ -22,10 +22,11 @@
 
 <div class="container">
     <div class="row">
-        <form class="col s12" method="post" action="/games/new" id="createForm">
-            <input id="participants" type="hidden" name="playerids" value="<%= '[' + game.playerids + ']' %>"/>
-            <input id="invites" type="hidden" name="inviteids" value="<%= '[' + game.inviteids + ']' %> "/>
-            <input id="requests" type="hidden" name="requestids" value="<%= '[' + game.requestids + ']' %>"/>
+        <% var url = game.isCreate ? "/games/new" : "/games/edit/" + game._id %>
+        <form class="col s12" method="post" action="<%= url %>" id="createForm">
+            <input id="participants" type="hidden" name="playerids" value="<%= playerids  %>"/>
+            <input id="invites" type="hidden" name="inviteids" value="<%= inviteids %> "/>
+            <input id="requests" type="hidden" name="requestids" value="<%= requestids %>"/>
             <div class="row">
                 <div class="input-field col s2">
                     <%- include('select', {model: sports, label: "Sport", choosed: game.sport}) %>
@@ -85,26 +86,31 @@
     <div class="row">
         <div class="col s4">
             <ul class="collection with-header">
-                <%- include('collectionWithIcons', {model: game.players, label: playerslabel, withAddOption: false, type: "players" }) %>
+                <%- include('collectionWithIcons', {model: game.playerids, label: playerslabel, withAddOption: false, type: "players" }) %>
             </ul>
         </div>
         <div class="col s4">
             <ul id="invitesCollection" class="collection with-header">
-                <%- include('collectionWithIcons', {model: game.invites, label: invitedlabel, withAddOption: false, type: "invites"}) %>
+                <%- include('collectionWithIcons', {model: game.inviteids, label: invitedlabel, withAddOption: false, type: "invites"}) %>
             </ul>
         </div>
         <div class="col s4">
             <ul class="collection with-header">
-                <%- include('collectionWithIcons', {model: game.requests, label: requestedlabel, withAddOption: true, type: "requests" }) %>
+                <%- include('collectionWithIcons', {model: game.requestids, label: requestedlabel, withAddOption: true, type: "requests" }) %>
             </ul>
         </div>
     </div>
     <div class="row">
-        <button class="btn waves-effect waves-light input-field" form="createForm">Create
+        <button class="btn waves-effect waves-light input-field" form="createForm">
+            <% if (isCreate) { %>
+                Create
+            <%} else { %>
+                Modify
+            <% } %>
             <i class="material-icons right">send</i>
         </button>
         <form action="/games/delete" method="post" class="right">
-            <input type="hidden" name="id" value="1"/>
+            <input type="hidden" name="id" value="<%= game._id %>"/>
             <button class="btn waves-effect waves-light red input-field" type="submit" name="action">Delete
                 <i class="material-icons right">delete</i>
             </button>

@@ -9,7 +9,7 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
 
-        if (res.tpl.user.id != req.session.userid) {
+        if (res.tpl.user._id != req.session.userid) {
             return next(new Error('Unauthorized to modify this user!'))
         }
 

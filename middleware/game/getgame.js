@@ -84,7 +84,36 @@ module.exports = function (objectrepository, onlyPlayers) {
 
             res.tpl.isCreate = false;
 
-            return next();
+            async.parallel(
+                {
+                    playerids: function (cb) {
+                        cb(null, result.playerids.map(function (e) {
+                            return e._id;
+                        }))
+                    },
+                    inviteids: function (cb) {
+                        cb(null, result.inviteids.map(function (e) {
+                            return e._id;
+                        }));
+                    },
+                    requestids: function (cb) {
+                        cb(null, result.requestids.map(function (e) {
+                            return e._id;
+                        }));
+                    }
+                }, function (err, results) {
+
+                    if (err) {
+                        return next(err);
+                    }
+
+                    res.tpl.playerids = JSON.stringify(results.playerids);
+                    res.tpl.inviteids = JSON.stringify(results.inviteids);
+                    res.tpl.requestids = JSON.stringify(results.requestids);
+
+                    return next();
+                }
+            )
 
         });
     }

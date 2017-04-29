@@ -21,9 +21,9 @@ module.exports = function (objectrepository) {
             return next();
         }
 
-        req.checkParams("id",'Add id').isInt();
+        req.checkParams("id",'Add id').notEmpty();
         req.checkBody("sex",'Choose sex').isOneOfThem(sexes);
-        req.checkBody("year",'Choose year').isOneOfThem(years());
+        req.checkBody("birth year",'Choose year').isOneOfThem(years());
         req.checkBody("description",'Enter description').notEmpty();
         req.checkBody("sports",'Sports should be array').isArray();
 
@@ -41,20 +41,34 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        userModel.findOne({_id : req.param.id}, function (err, result) {
+        console.log("Body");
+        console.log(req.body);
+
+        userModel.findOne({_id : req.params.id}, function (err, result) {
 
             if (err) {
                 return next(err);
             }
 
             result.sex = req.body.sex;
-            result.birthyear = req.body.year;
+            result.birthyear = req.body["birth year"];
             result.description = req.body.description;
             result.sports = req.body.sports;
 
-            res.tpl.user = result;
+            console.log(result);
 
-            res.redirect("/users/"+result.id);
+            result.save(function (err) {
+
+                if (err) {
+                    return next(err);
+                }
+
+                res.tpl.user = result;
+
+                res.redirect("/users/"+result.id);
+
+            });
+
         });
 
     }

@@ -13,12 +13,12 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
 
-
-        req.checkBody("id",'Add game id').isInt();
+        req.checkBody("id",'Add game id').notEmpty();
 
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
+                console.log(result.array());
                 return next();
             }
 
@@ -30,21 +30,18 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        // gameModel.delete(req.body.id, function (err, id) {
-        //
-        //     if (err) {
-        //         return next();
-        //     }
-        //
-        //     res.redirect("/");
-        // });
-
         gameModel.remove({_id: req.body.id}, function (err) {
-                if (err) {
-                    return next();
-                }
 
-                res.redirect("/");
+            if (err) {
+                console.log(err);
+                return next();
+            }
+
+            console.log("BBBBBBBBBBB");
+
+            res.redirect("/");
+
+            console.log("EEEEEEEEEEEE");
         })
 
     }

@@ -41,9 +41,9 @@
             <% sports.forEach(function (row) { %>
                 <div class="col s2">
                     <% if (user.sports.indexOf(row) != -1)  {%>
-                        <input type="checkbox" id="<%= row %>" name="sports[]" value="<%= row %>" checked/>
+                        <input type="checkbox" id="<%= row %>" name="sports" value="<%= row %>" checked/>
                     <%} else {%>
-                        <input type="checkbox" id="<%= row %>" name="sports[]" value="<%= row %>"/>
+                        <input type="checkbox" id="<%= row %>" name="sports" value="<%= row %>"/>
                     <%}%>
                     <label for="<%= row %>"><%= row %></label>
                 </div>
