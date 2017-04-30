@@ -25,9 +25,6 @@ module.exports = function (objectrepository) {
         req.checkBody("location",'Add location').notEmpty();
         req.checkBody("description",'Enter description').notEmpty();
         req.checkBody("visibility",'Enter visibility').isOneOfThem(visibilities);
-        //req.checkBody("playerids",'Players should be an array').isArray();
-        //req.checkBody("inviteids",'Invited should be an array').isArray();
-        //req.checkBody("requestids",'Requested should be an array').isArray();
 
         req.getValidationResult().then(function(result) {
 

@@ -12,6 +12,7 @@ var User = db.model('User', {
     birthyear: String,
     sex: String,
     description: String,
+    avatarextension: String,
     sports: {
         type: Array
     }

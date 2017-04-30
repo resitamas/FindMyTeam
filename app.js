@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
+var fileUpload = require('express-fileupload');
 
 //app.set('views engine', 'ejs');
 
@@ -40,6 +41,8 @@ app.use(expressValidator({
         }
     }
 }));
+
+app.use(fileUpload());
 
 /**
  * Session above all

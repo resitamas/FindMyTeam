@@ -22,7 +22,7 @@ module.exports = function (objectrepository) {
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
-                console.log(result.array());
+
                 return next();
             }
 
@@ -40,14 +40,12 @@ module.exports = function (objectrepository) {
             if (err) {
                 return next(err);
             }
-            console.log(result);
+
             if (result) {
                 req.session.userid = result.id;
-                res.redirect('/');
-            } else {
-                return next();
             }
 
+            return next();
         })
     }
 };

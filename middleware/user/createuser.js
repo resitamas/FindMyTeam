@@ -62,10 +62,8 @@ module.exports = function (objectrepository) {
             user.description = req.body.description;
             user.sports = req.body.sports;
             user.password = req.body.password;
+            user.avatarextension = "";
 
-            console.log(user);
-
-            //userModel.save(user);
             user.save(function (err, result) {
 
                 if (err) {
@@ -73,6 +71,7 @@ module.exports = function (objectrepository) {
                 }
 
                 req.session.userid = result._id;
+                req.session.avatar = "/public/images/avatar.png";
                 res.redirect('/');
 
             })

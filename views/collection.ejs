@@ -3,7 +3,7 @@
 </li>
 <% model.forEach(function (row) { %>
     <a href="/users/<%=row._id %>" target="_blank" class="collection-item avatar">
-        <img src="https://avatars.githubusercontent.com/u/17765383?v=3&s=40" alt="" class="circle">
+        <img src="<%= "/public/images/" + row._id + row.avatarextension %>" alt="" class="circle">
         <span class="title black-text"><%= row.name %></span>
     </a>
 <% }); %>

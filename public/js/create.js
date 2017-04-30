@@ -75,6 +75,10 @@ $(function(){
     var locationInput = document.getElementById('pac-input');
     var autocomplete = new google.maps.places.Autocomplete(locationInput, locationOptions);
 
+    $(".backup_picture").on("error", function(){
+        $(this).attr('src', '/public/images/avatar.png');
+    });
+
 })
 
 function showUserInfo(element) {
@@ -129,8 +133,10 @@ function removeFromRequests(element) {
 
     changeClass(parent,"red", "green");
 
+    invites = removeFrom(invites,parent.attr("data-userid"));
     requests = removeFrom(requests,parent.attr("data-userid"));
 
+    $("#invites").val(JSON.stringify(invites));
     $("#requests").val(JSON.stringify(requests));
 
 }
@@ -141,8 +147,10 @@ function addFromRequests(element) {
 
     changeClass(parent,"green", "red");
 
-    requests = addTo(requests, parent.attr("data-userid"));
+    invites = addTo(invites, parent.attr("data-userid"));
+    requests = removeFrom(requests,parent.attr("data-userid"));
 
+    $("#invites").val(JSON.stringify(invites));
     $("#requests").val(JSON.stringify(requests));
 
 }

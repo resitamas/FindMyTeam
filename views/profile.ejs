@@ -13,12 +13,12 @@
 </head>
 <body>
 
-<%- include('navbarLoggedIn', userid) %>
+<%- include('navbarLoggedIn', { userid: userid, avatar: avatar } ) %>
 
 <div class="container">
     <div class="row">
         <div class="col s6 offset-s3 center">
-            <img src="https://avatars.githubusercontent.com/u/17765383" alt="" class="circle center">
+            <img src="<%=avatar%>" alt="" class="circle center" style="width: 200px; height: 200px;">
         </div>
         <div class="col s3">
             <a href="/users/edit/<%= userid %>">

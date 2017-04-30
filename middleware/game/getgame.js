@@ -26,11 +26,13 @@ module.exports = function (objectrepository, onlyPlayers) {
                 return next(new Error("Error in params!"));
             }
 
-            if (onlyPlayers) {
-                getGameOnlyWithPlayers(req,res,next);
-            } else {
-                getGame(req,res,next);
-            }
+            getGame(req,res,next, onlyPlayers);
+
+            // if (onlyPlayers) {
+            //     getGameOnlyWithPlayers(req,res,next);
+            // } else {
+            //     getGame(req,res,next);
+            // }
 
         });
 
@@ -58,23 +60,28 @@ module.exports = function (objectrepository, onlyPlayers) {
 
     }
 
-    function getGame(req, res, next) {
+    function getGame(req, res, next, onlyPlayers) {
 
         var gameId = req.params.id;
 
-        if (gameId == undefined) {
+        if (gameId == undefined || gameId == "undefined") {
             gameId = req.body.id;
         }
 
-        gameModel.findOne({_id : gameId}).populate("organizer").populate("playerids").populate("inviteids").populate("requestids").exec(function (err, result) {
+        gameModel.findOne({_id : gameId}).populate("organizer").populate("requestids").populate("playerids").populate("inviteids").exec(function (err, result) {
 
             if (err) {
                 return next(err);
             }
 
-            res.tpl.playerslabel = "Players (" + result.playerids.length + ")";
-            res.tpl.invitedlabel = "Invites (" + result.inviteids.length + ")";
-            res.tpl.requestedlabel = "Requests (" + result.requestids.length + ")";
+            if (onlyPlayers) {
+                res.tpl.label = "Players (" + result.maxplayers + "/" + result.playerids.length + ")";
+                res = setButtonVisibilities(req,res,result);
+            } else {
+                res.tpl.playerslabel = "Players (" + result.playerids.length + ")";
+                res.tpl.invitedlabel = "Invites (" + result.inviteids.length + ")";
+                res.tpl.requestedlabel = "Requests (" + result.requestids.length + ")";
+            }
 
             res.tpl.game = result;
 
@@ -128,7 +135,10 @@ module.exports = function (objectrepository, onlyPlayers) {
 
         var id = req.session.userid;
 
+        console.log(game);
+
         if (id == game.organizer._id) {
+
             res.tpl.editbutton = true;
 
             if (isInArray(game.playerids,id, "_id")) {
@@ -145,7 +155,7 @@ module.exports = function (objectrepository, onlyPlayers) {
                     res.tpl.refusebutton = true;
                     res.tpl.playbutton = true;
                 } else {
-                    if (isInArray(game.requestids,id, "_id")) {
+                    if (!isInArray(game.requestids,id, "_id")) {
                         res.tpl.requestbutton = true;
                     }
                 }
@@ -156,6 +166,12 @@ module.exports = function (objectrepository, onlyPlayers) {
     }
 
     function isInArray(arr, element, key) {
+
+        console.log(arr.find(function (el) {
+
+            return el[key] == element;
+
+        }));
 
         return arr.find(function (el) {
 

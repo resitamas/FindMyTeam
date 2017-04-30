@@ -35,6 +35,8 @@ module.exports = function (objectrepository) {
         criteria = addCriteria(criteria,req,"city");
         criteria = addCriteria(criteria,req,"level");
 
+        criteria.visibility = "Public";
+
         console.log(criteria);
 
         gameModel.find(criteria, function (err, games) {

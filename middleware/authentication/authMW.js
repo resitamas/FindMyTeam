@@ -11,7 +11,7 @@ module.exports = function (objectrepository) {
         if (typeof req.session.userid === 'undefined') {
             return res.redirect('/login');
         }
-        //req.session.userid = 1;
+
         return next();
     };
 

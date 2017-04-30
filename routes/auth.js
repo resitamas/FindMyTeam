@@ -7,6 +7,7 @@ var inverseAuthMW = require('../middleware/authentication/inverseauth');
 var createUserMW = require('../middleware/user/createuser');
 var loginMW = require('../middleware/authentication/login');
 var logoutMW = require('../middleware/authentication/logout');
+var imageResolverMW = require('../middleware/imageresolver');
 
 var userModel = require('../models/user');
 
@@ -24,6 +25,7 @@ module.exports = function (app) {
     app.use('/login',
         inverseAuthMW(objectRepository),
         loginMW(objectRepository),
+        imageResolverMW(objectRepository),
         renderEJSMW(objectRepository,"login.ejs")
     );
 
