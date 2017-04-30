@@ -13,8 +13,6 @@ module.exports = function (objectrepository) {
 
     return function (req, res, next) {
 
-        console.log("JDJDJDJDJDJD " + req.session.userid);
-
         if (req.session.userid != undefined) {
 
             userModel.findOne({_id : req.session.userid}, function (err, result) {

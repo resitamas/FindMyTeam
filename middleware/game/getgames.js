@@ -37,8 +37,6 @@ module.exports = function (objectrepository) {
 
         criteria.visibility = "Public";
 
-        console.log(criteria);
-
         gameModel.find(criteria, function (err, games) {
 
             if (err) {

@@ -30,10 +30,7 @@ module.exports = function (objectrepository) {
 
         req.getValidationResult().then(function(result) {
 
-            console.log(req.body);
-
             if (result.isEmpty() == false) {
-                console.log(result.array());
                 return next();
             }
 

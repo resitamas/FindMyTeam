@@ -23,7 +23,6 @@
 <div class="container">
     <div class="row">
         <% var url = isCreate ? "/games/new" : "/games/edit/" + game._id %>
-        <% console.log(url) %>
         <form class="col s12" method="post" action="<%= url %>" id="createForm">
             <input id="participants" type="hidden" name="playerids" value="<%= playerids  %>"/>
             <input id="invites" type="hidden" name="inviteids" value="<%= inviteids %> "/>

@@ -135,8 +135,6 @@ module.exports = function (objectrepository, onlyPlayers) {
 
         var id = req.session.userid;
 
-        console.log(game);
-
         if (id == game.organizer._id) {
 
             res.tpl.editbutton = true;
@@ -166,12 +164,6 @@ module.exports = function (objectrepository, onlyPlayers) {
     }
 
     function isInArray(arr, element, key) {
-
-        console.log(arr.find(function (el) {
-
-            return el[key] == element;
-
-        }));
 
         return arr.find(function (el) {
 

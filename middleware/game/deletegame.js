@@ -18,7 +18,6 @@ module.exports = function (objectrepository) {
         req.getValidationResult().then(function(result) {
 
             if (result.isEmpty() == false) {
-                console.log(result.array());
                 return next();
             }
 
@@ -33,15 +32,11 @@ module.exports = function (objectrepository) {
         gameModel.remove({_id: req.body.id}, function (err) {
 
             if (err) {
-                console.log(err);
                 return next();
             }
 
-            console.log("BBBBBBBBBBB");
-
             res.redirect("/");
 
-            console.log("EEEEEEEEEEEE");
         })
 
     }

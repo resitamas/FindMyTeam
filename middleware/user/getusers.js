@@ -27,10 +27,9 @@ module.exports = function (objectrepository) {
 
     function doWork(req, res, next) {
 
-        console.log(req.params.name);
-        console.log(req.param.name);
+        console.log(req.query.name[1]);
 
-        userModel.find({name : req.params.name}, function (err, result) {
+        userModel.find({}, function (err, result) {
 
             if (err) {
                 return next(err);
@@ -45,6 +44,8 @@ module.exports = function (objectrepository) {
                     name: result[i].name
                 });
             }
+
+            console.log(users);
 
             res.tpl.users = users;
 
